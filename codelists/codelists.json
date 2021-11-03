@@ -1,3 +1,10 @@
 {
-  "files": {}
+  "files": {
+    "opensafely-direct-acting-oral-anticoagulants-doac.csv": {
+      "id": "opensafely/direct-acting-oral-anticoagulants-doac/2020-10-05",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/direct-acting-oral-anticoagulants-doac/2020-10-05/",
+      "downloaded_at": "2021-11-03 12:07:07.697655Z",
+      "sha": "50f69d9c0bcb0e58aadb76fb4749d33f74f66253"
+    }
+  }
 }
