@@ -1,7 +1,6 @@
 # Import functions
 from cohortextractor import (
     StudyDefinition,
-    Measure,
     codelist,
     codelist_from_csv,
     combine_codelists,
@@ -35,7 +34,7 @@ study = StudyDefinition(
         returning="date",
         find_first_match_in_period=True,
         date_format="YYYY-MM",
-        #return_expectations={"date": {"latest": "2020-03-01"}},
+        return_expectations={"date": {"latest": "2020-03-01"}},
     ),
 
      # Clinical events
@@ -54,14 +53,14 @@ study = StudyDefinition(
 
     # BMI recorded
     bmi=patients.most_recent_bmi(
-        between=["2019-12-01", "2021-10-31"],
-        minimum_age_at_measurement=18,
-        include_measurement_date=True,
-        date_format="YYYY-MM",
-        return_expectations={
-            "date": {"earliest": "2019-12-01", "latest": "2021-10-31"},
-            "float": {"distribution": "normal", "mean": 28, "stddev": 8},
-            "incidence": 0.80,}
+    between=["2019-12-01", "2021-10-31"],
+    minimum_age_at_measurement=18,
+    include_measurement_date=True,
+    date_format="YYYY-MM",
+    return_expectations={
+        "date": {"earliest": "2019-12-01", "latest": "2021-10-31"},
+        "float": {"distribution": "normal", "mean": 28, "stddev": 8},
+        "incidence": 0.80,}
     ),
 
     # Demographic information
@@ -76,32 +75,4 @@ study = StudyDefinition(
             "category": {"ratios": {"M": 0.49, "F": 0.51}},
             "incidence": 1},
     ),
-    carer=patients.with_these_clinical_events(
-        carer,
-        between = [start_date, end_date],
-        returning = "binary_flag",
-        find_last_match_in_period = True,
-        return_expectations = {
-            "incidence": 0.2,}
-    ),
-
-    # Organisation
-    region=patients.registered_practice_as_of(
-        "2021-11-01",
-        returning="nuts1_region_name",
-        return_expectations={
-            "rate": "universal",
-            "category": {
-            "ratios": {
-                "EAST OF ENGLAND": 0.1,
-                "LONDON": 0.1,
-                "MIDLANDS": 0.1,
-                "NORTH EAST AND YORKSHIRE": 0.1,
-                "NORTH WEST": 0.1,
-                "SOUTH EAST": 0.1,
-                "SOUTH WEST": 0.2,
-            },
-        },
-    },
-)
 )

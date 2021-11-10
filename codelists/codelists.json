@@ -5,6 +5,42 @@
       "url": "https://codelists.opensafely.org/codelist/opensafely/direct-acting-oral-anticoagulants-doac/2020-10-05/",
       "downloaded_at": "2021-11-03 12:07:07.697655Z",
       "sha": "50f69d9c0bcb0e58aadb76fb4749d33f74f66253"
+    },
+    "primis-covid19-vacc-uptake-eth2001.csv": {
+      "id": "primis-covid19-vacc-uptake/eth2001/v1",
+      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/eth2001/v1/",
+      "downloaded_at": "2021-11-08 11:55:29.810447Z",
+      "sha": "36e4eacba898e6ec72da8ff66e8c673bfd9aa8e4"
+    },
+    "primis-covid19-vacc-uptake-non_eth2001.csv": {
+      "id": "primis-covid19-vacc-uptake/non_eth2001/v1",
+      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/non_eth2001/v1/",
+      "downloaded_at": "2021-11-08 11:55:30.174617Z",
+      "sha": "b8581424b9305f70148f1bbccc0d3e4703847df7"
+    },
+    "primis-covid19-vacc-uptake-eth_notgiptref.csv": {
+      "id": "primis-covid19-vacc-uptake/eth_notgiptref/v1",
+      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/eth_notgiptref/v1/",
+      "downloaded_at": "2021-11-08 11:55:30.459053Z",
+      "sha": "6245c85e4bd44c0c3aa573325cf55891efee45db"
+    },
+    "primis-covid19-vacc-uptake-eth_notstated.csv": {
+      "id": "primis-covid19-vacc-uptake/eth_notstated/v1",
+      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/eth_notstated/v1/",
+      "downloaded_at": "2021-11-08 11:55:30.755540Z",
+      "sha": "a8997e1807a07d8f56e34ba3d0b95ee0082fec82"
+    },
+    "primis-covid19-vacc-uptake-eth_norecord.csv": {
+      "id": "primis-covid19-vacc-uptake/eth_norecord/v1",
+      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/eth_norecord/v1/",
+      "downloaded_at": "2021-11-08 11:55:31.065460Z",
+      "sha": "ca003bb021a14e704a6e81c139536ef459673da4"
+    },
+    "primis-covid19-vacc-uptake-carer.csv": {
+      "id": "primis-covid19-vacc-uptake/carer/v1",
+      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/carer/v1/",
+      "downloaded_at": "2021-11-08 17:53:01.910696Z",
+      "sha": "e3526d8e7e1a3aaeeee29a3bb18c177243c218c6"
     }
   }
 }
