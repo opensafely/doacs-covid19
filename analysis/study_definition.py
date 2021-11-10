@@ -18,23 +18,28 @@ end_date = "2021-11-01"
 study = StudyDefinition(
 
     # Default dummy data behaviour
-    index_date = end_date,
+    index_date = date.today().isoformat(),
     default_expectations={
-        "date": {"earliest": start_date, "latest": end_date},
+        "date": {"earliest": "1970-01-01", "latest": index_date},
         "rate": "uniform",
         "incidence": 0.5,
     },
     
     # Define the study population
-    population = patients.all(),
+    population = patients.all(), 
+    ### FILTERS TO ADD
+    # age - 18-120
+    # died
+    # registered
+
     
     # Medications
     doacs=patients.with_these_medications(
         doac_codes, 
-        on_or_before=end_date,
-        returning="date",
+        on_or_before=end_date, # make this between index date and last_day_of_month(index_date)
+        returning="date", # can change to binary_flag
         find_first_match_in_period=True,
-        date_format="YYYY-MM",
+        date_format="YYYY-MM", # this can disappear if not using date
         #return_expectations={"date": {"latest": "2020-03-01"}},
     ),
 
@@ -42,7 +47,7 @@ study = StudyDefinition(
     creatinine=patients.with_these_clinical_events(
         creatinine_codes,
         find_last_match_in_period=True,
-        between=["2020-12-01", "2021-11-01"],
+        between=["2020-12-01", "2021-11-01"], # similar date to doac
         returning="numeric_value",
         include_date_of_match=True,
         include_month=True,
@@ -54,7 +59,7 @@ study = StudyDefinition(
 
     # BMI recorded
     bmi=patients.most_recent_bmi(
-        between=["2019-12-01", "2021-10-31"],
+        between=["2019-12-01", "2021-10-31"], # this could use index date
         minimum_age_at_measurement=18,
         include_measurement_date=True,
         date_format="YYYY-MM",
@@ -96,8 +101,8 @@ study = StudyDefinition(
                 "EAST OF ENGLAND": 0.1,
                 "LONDON": 0.1,
                 "MIDLANDS": 0.1,
-                "NORTH EAST AND YORKSHIRE": 0.1,
-                "NORTH WEST": 0.1,
+                "NORTH EAST AND YORKSHIRE": 0.2,
+                "NORTH WEST": 0.2,
                 "SOUTH EAST": 0.1,
                 "SOUTH WEST": 0.2,
             },

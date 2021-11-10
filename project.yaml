@@ -9,7 +9,7 @@ actions:
     run: cohortextractor:latest generate_cohort --study-definition study_definition
     outputs:
       highly_sensitive:
-        cohort: output/input.csv
+        cohort: output/input_*.feather
 
   generate_study_population_ethnicity:
     run: cohortextractor:latest generate_cohort --study-definition study_definition_ethnicity
