@@ -1,27 +1,17 @@
 # Import functions
-from cohortextractor import (
-    StudyDefinition,
-    codelist,
-    codelist_from_csv,
-    combine_codelists,
-    filter_codes_by_category,
-    patients,
-)
-
-# Import codelist
+from cohortextractor import StudyDefinition, patients
 from codelists import *
-
-start_date = "2016-03-01"
-end_date = "2021-11-01"
+from datetime import date
 
 study = StudyDefinition(
 
-    # Default dummy data behaviour
-    index_date = end_date,
+    index_date = "2021-11-01",  # date.today().isoformat()
+    
+    # Default expectations
     default_expectations={
-        "date": {"earliest": start_date, "latest": end_date},
+        "date": {"earliest": "1970-01-01", "latest": "index_date"},
         "rate": "uniform",
-        "incidence": 0.5,
+        "incidence": 0.2,
     },
     
     # Define the study population

@@ -8,12 +8,25 @@ doac_codes = codelist_from_csv(
     "codelists/opensafely-direct-acting-oral-anticoagulants-doac.csv",
     system="snomed",
     column='id',
+    category_column="chemical"
 )
 
 # Creatinine
 creatinine_codes = codelist(
     ["XE2q5"],
     system="ctv3",
+)
+
+# Weight
+weight_codes = codelist(
+    ["27113001"],
+    system="snomed",
+)
+
+# Height
+height_codes = codelist(
+    ["271603002"],
+    system="snomed",
 )
 
 # Ethnicity codes

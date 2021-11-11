@@ -1,31 +1,19 @@
 # Import functions
-from cohortextractor import (
-    StudyDefinition,
-    Measure,
-    codelist,
-    codelist_from_csv,
-    combine_codelists,
-    filter_codes_by_category,
-    patients,
-)
-
-# Import codelist
+from cohortextractor import StudyDefinition, Measure, codelist, codelist_from_csv, combine_codelists, filter_codes_by_category, patients
 from codelists import *
-
-start_date = "2016-03-01"
-end_date = "2021-11-01"
+from datetime import date
 
 study = StudyDefinition(
+    index_date = "2021-11-01",  # date.today().isoformat()
 
-    # Default dummy data behaviour
-    index_date = end_date,
+    # Default expectations
     default_expectations={
-        "date": {"earliest": start_date, "latest": end_date},
+        "date": {"earliest": "1970-01-01", "latest": "index_date"},
         "rate": "uniform",
-        "incidence": 0.5,
+        "incidence": 0.2,
     },
-    
-    # Define the study population
+
+    # Define study population
     population=patients.satisfying(
         """
         registered = 1
@@ -37,31 +25,46 @@ study = StudyDefinition(
         age>=18
         """,
         registered=patients.registered_as_of(
-            index_date,
-        )
+            "index_date",
         ),
-    ) 
-    ### FILTERS TO ADD
-    # age - 18-120
-    # died
-    # registered
-
-    
-    # Medications
-    doacs=patients.with_these_medications(
-        doac_codes, 
-        on_or_before=end_date, # make this between index date and last_day_of_month(index_date)
-        returning="date", # can change to binary_flag
-        find_first_match_in_period=True,
-        date_format="YYYY-MM", # this can disappear if not using date
-        #return_expectations={"date": {"latest": "2020-03-01"}},
+        has_died=patients.died_from_any_cause(
+            on_or_before="index_date",
+            returning="binary_flag",
+        ),
     ),
 
-     # Clinical events
+    # With these medications
+    doacs=patients.with_these_medications(
+        doac_codes, 
+        between=["index_date", "last_day_of_month(index_date)"],
+        returning="binary_flag",
+        return_expectations = {
+            "incidence": 0.2,},
+    ),
+    doacs_chemical=patients.with_these_medications(
+        doac_codes, 
+        between=["index_date", "last_day_of_month(index_date)"],
+        returning="chemical",
+        return_expectations = {
+            "rate": "universal",
+            "category": {
+            "ratios": {
+                "Apixaban": 0.25,
+                "Edoxaban": 0.25,
+                "Dabigatran etexilate": 0.25,
+                "Rivaroxaban": 0.25,
+            },
+            },
+        },
+    ),
+
+     # With these clinical events
+        ## Q. Still trying to get my head around this one, I am tring to achieve returning the latest creatinine reading regardless of period
+        ## but also identify maybe by a binary? if it was recorded in the last 12 months or not.
     creatinine=patients.with_these_clinical_events(
         creatinine_codes,
         find_last_match_in_period=True,
-        between=["2020-12-01", "2021-11-01"], # similar date to doac
+        between=["index_date - 12 months", "index_date"],
         returning="numeric_value",
         include_date_of_match=True,
         include_month=True,
@@ -71,9 +74,11 @@ study = StudyDefinition(
             "incidence": 0.95,},
     ),
 
-    # BMI recorded
+    # BMI, weight and height
+        ## Q. This too, I am tring to achieve returning the latest BMI regardless of period
+        ## but also identify maybe by a binary? if the BMI returned was taken in the last 2 years or not.
     bmi=patients.most_recent_bmi(
-        between=["2019-12-01", "2021-10-31"], # this could use index date
+        between=["index_date - 2 years", "index_date"],
         minimum_age_at_measurement=18,
         include_measurement_date=True,
         date_format="YYYY-MM",
@@ -82,13 +87,68 @@ study = StudyDefinition(
             "float": {"distribution": "normal", "mean": 28, "stddev": 8},
             "incidence": 0.80,}
     ),
+    weight=patients.with_these_clinical_events(
+        weight_codes,
+        find_last_match_in_period=True,
+        between=["start_date", "end_date"],
+        returning="numeric_value",
+        include_date_of_match=True,
+        include_month=True,
+        return_expectations={
+            "float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
+            "date": {"earliest": "2020-12-01", "latest": "2021-11-01"},
+            "incidence": 0.95,},
+    ),
+    height=patients.with_these_clinical_events(
+        height_codes,
+        find_last_match_in_period=True,
+        between=["start_date", "end_date"],
+        returning="numeric_value",
+        include_date_of_match=True,
+        include_month=True,
+        return_expectations={
+            "float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
+            "date": {"earliest": "2020-12-01", "latest": "2021-11-01"},
+            "incidence": 0.95,},
+    ),
 
     # Demographic information
     age=patients.age_as_of(
-        end_date, 
+        "index_date",
         return_expectations={
             "rate": "universal",
-            "int": {"distribution": "population_ages"}},
+            "int": {"distribution": "population_ages"},
+        },
+    ),
+    age_band=patients.categorised_as(
+        {
+            "missing": "DEFAULT",
+            "<20": """ age >= 0 AND age < 20""",
+            "20-29": """ age >=  20 AND age < 30""",
+            "30-39": """ age >=  30 AND age < 40""",
+            "40-49": """ age >=  40 AND age < 50""",
+            "50-59": """ age >=  50 AND age < 60""",
+            "60-69": """ age >=  60 AND age < 70""",
+            "70-79": """ age >=  70 AND age < 80""",
+            "80-89": """ age >=  80 AND age < 90""",
+            ">90": """ age >=  90 AND age < 120""",
+        },
+        return_expectations={
+            "rate": "universal",
+            "category": {
+                "ratios": {
+                    "missing": 0.005,
+                    "<20": 0.12,
+                    "20-29": 0.125,
+                    "30-39": 0.125,
+                    "40-49": 0.125,
+                    "50-59": 0.125,
+                    "60-69": 0.125,
+                    "70-79": 0.125,
+                    ">90": 0.125,
+                }
+            },
+        },
     ),
     sex=patients.sex(
         return_expectations={
@@ -97,7 +157,7 @@ study = StudyDefinition(
     ),
     carer=patients.with_these_clinical_events(
         carer,
-        between = [start_date, end_date],
+        between=["index_date", "last_day_of_month(index_date)"],
         returning = "binary_flag",
         find_last_match_in_period = True,
         return_expectations = {
@@ -106,21 +166,47 @@ study = StudyDefinition(
 
     # Organisation
     region=patients.registered_practice_as_of(
-        "2021-11-01",
+        "index_date",
         returning="nuts1_region_name",
         return_expectations={
             "rate": "universal",
             "category": {
             "ratios": {
-                "EAST OF ENGLAND": 0.1,
-                "LONDON": 0.1,
-                "MIDLANDS": 0.1,
-                "NORTH EAST AND YORKSHIRE": 0.2,
-                "NORTH WEST": 0.2,
-                "SOUTH EAST": 0.1,
-                "SOUTH WEST": 0.2,
+                "Eeast of England": 0.1,
+                "London": 0.1,
+                "Midlands": 0.1,
+                "North East and Yorkshire": 0.2,
+                "North West": 0.2,
+                "South East": 0.1,
+                "South West": 0.2,
+            },
             },
         },
-    },
+    ),
 )
-)
+
+
+measures = [
+    Measure(
+        id="doacs_overall",
+        numerator="doacs",
+        denominator="population",
+        group_by="population",
+    ),
+
+    Measure(
+        id="doacs_by_region",
+        numerator="doacs",
+        denominator="population",
+        group_by=["region", "population"],
+    ),
+    
+    Measure(
+        id="doacs_by_demographics",
+        numerator="doacs",
+        denominator="population",
+        group_by=["age_band", "sex", "ethnicity", "carer"], # Can I add ethnicity into a measure here?
+    ),
+        
+
+]
