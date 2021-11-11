@@ -11,26 +11,26 @@ actions:
       highly_sensitive:
         cohort: output/input_*.csv.gz
 
-generate_study_population_ethnicity:
+  generate_study_population_ethnicity:
     run: cohortextractor:latest generate_cohort --study-definition study_definition_ethnicity --output-dir=output --output-format=csv
     outputs:
       highly_sensitive:
         cohort: output/input_ethnicity.csv
 
-generate_study_population_creatinine_clearance:
+  generate_study_population_creatinine_clearance:
     run: cohortextractor:latest generate_cohort --study-definition study_definition_creatinine_clearance --output-dir=output --output-format=csv
     outputs:
       highly_sensitive:
         cohort: output/input_creatinine_clearance.csv
 
-join_ethnicity:
+  join_ethnicity:
     run: python:latest python analysis/join_ethnicity.py
     needs: [generate_study_population, generate_study_population_ethnicity]
     outputs:
       highly_sensitive:
         cohort: output/input*.csv.gz
 
-generate_measures:
+  generate_measures:
     run: cohortextractor:latest generate_measures --study-definition study_definition --output-dir=output
     needs: [join_ethnicity]
     outputs:
