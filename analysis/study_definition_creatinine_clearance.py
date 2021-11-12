@@ -27,31 +27,5 @@ study = StudyDefinition(
     # Define the study population
     population = patients.all(),
     
-    # BMI, weight and height
-    bmi=patients.most_recent_bmi(
-        between=["index_date - 2 years", "index_date"],
-        minimum_age_at_measurement=18,
-        return_expectations={
-            "float": {"distribution": "normal", "mean": 28, "stddev": 8},
-            "incidence": 0.80,}
-    ),
-    bmi_band=patients.categorised_as(
-        {
-            "missing": "DEFAULT",
-            "Underweight": """ bmi >= 0 AND bmi < 18.5""",
-            "Normal weight": """ bmi >=  18.5 AND bmi < 24.9""",
-            "Overweight / obese": """ bmi >=  25""",
-        },
-        return_expectations={
-            "rate": "universal",
-            "category": {
-                "ratios": {
-                    "missing": 0.1,
-                    "Underwight": 0.2,
-                    "Normal weight": 0.5,
-                    "Overweight / obese": 0.2,
-                }
-            },
-        },
-    ),
+   
 )
