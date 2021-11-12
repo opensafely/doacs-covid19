@@ -8,6 +8,12 @@ doac_codes = codelist_from_csv(
     "codelists/opensafely-direct-acting-oral-anticoagulants-doac.csv",
     system="snomed",
     column='id',
+    category_column="id"
+)
+doac_chemical = codelist_from_csv(
+    "codelists/opensafely-direct-acting-oral-anticoagulants-doac.csv",
+    system="snomed",
+    column='id',
     category_column="chemical"
 )
 
@@ -15,6 +21,18 @@ doac_codes = codelist_from_csv(
 creatinine_codes = codelist(
     ["XE2q5"],
     system="ctv3",
+)
+
+# eGFR
+egfr_codes = codelist(
+    ["1107411000000104"],
+    system="snomed",
+)
+
+# Estimated creatinine clearance using Cockcroft-Gault formula
+crcl_codes = codelist(
+    ["968191000000100"],
+    system="snomed",
 )
 
 # Weight
