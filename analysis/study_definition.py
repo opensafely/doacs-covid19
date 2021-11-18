@@ -97,6 +97,12 @@ study = StudyDefinition(
         return_expectations = {
         "incidence": 0.2,},
     ),
+    atrial_fib=patients.with_these_clinical_events(
+        af_codes,
+        on_or_before="index_date",
+        returning="binary_flag",
+        return_expectations={"incidence": 0.01,},
+    ),
     serum_creatinine=patients.with_these_clinical_events(
         crcl_codes,
         find_last_match_in_period=True,
