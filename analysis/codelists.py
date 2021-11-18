@@ -17,6 +17,12 @@ doac_chemical = codelist_from_csv(
     category_column="chemical"
 )
 
+af_codes = codelist_from_csv(
+    "codelists/opensafely-atrial-fibrillation-clinical-finding.csv",
+    system="snomed",
+    column='code',
+)
+
 # Serum creatinine
 creatinine_codes = codelist(
     ["XE2q5"],
