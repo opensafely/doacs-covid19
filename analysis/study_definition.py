@@ -73,12 +73,6 @@ study = StudyDefinition(
     ),
     
     # With these clinical events
-    atrial_fib=patients.with_these_clinical_events(
-        af_codes,
-        on_or_before="index_date",
-        returning="binary_flag",
-        return_expectations={"incidence": 0.01,},
-    ),
     egfr_recorded=patients.with_these_clinical_events(
         egfr_codes,
         find_last_match_in_period=True,
