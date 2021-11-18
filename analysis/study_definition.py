@@ -59,20 +59,26 @@ study = StudyDefinition(
             },
         },
     ),
-    #doac_dose_calculated=patients.categorised_as(
-        #{"0": "DEFAULT",
-        #"10": "doac = 'Apixaban'",
-        #"60": "doac = 'Edoxaban'",
-        #"300": "doac = 'Dabigatran'",
-        #"20": "doac = 'Rivaroxaban'",
-        #},
-        #return_expectations={
-         #"category": {"ratios": {"0": 0.1, "10": 0.2, "60": 0.2, "300": 0.25, "20": 0.25}},
-        #"incidence": 0.2,
-        #},
-    #),
+    doac_dose_calculated=patients.categorised_as(
+        {"0": "DEFAULT",
+        "10": "doac = 'Apixaban'",
+        "60": "doac = 'Edoxaban'",
+        "300": "doac = 'Dabigatran'",
+        "20": "doac = 'Rivaroxaban'",
+        },
+        return_expectations={
+         "category": {"ratios": {"0": 0.1, "10": 0.2, "60": 0.2, "300": 0.25, "20": 0.25}},
+        "incidence": 0.2,
+        },
+    ),
     
     # With these clinical events
+    atrial_fib=patients.with_these_clinical_events(
+        af_codes,
+        on_or_before="index_date",
+        returning="binary_flag",
+        return_expectations={"incidence": 0.01,},
+    ),
     egfr_recorded=patients.with_these_clinical_events(
         egfr_codes,
         find_last_match_in_period=True,
