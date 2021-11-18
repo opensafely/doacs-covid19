@@ -1,4 +1,5 @@
 # Import functions
+from typing import DefaultDict
 from cohortextractor import StudyDefinition, Measure, codelist, codelist_from_csv, combine_codelists, filter_codes_by_category, patients
 from codelists import *
 from datetime import date
@@ -34,14 +35,15 @@ study = StudyDefinition(
     ),
 
     # With these medications
-    doacs=patients.with_these_medications(
+    on_doac=patients.with_these_medications(
         doac_codes, 
         between=["index_date", "last_day_of_month(index_date)"],
         returning="binary_flag",
+        find_last_match_in_period = True,
         return_expectations = {
             "incidence": 0.2,},
     ),
-    doacs_chemical=patients.with_these_medications(
+    doac=patients.with_these_medications(
         doac_chemical, 
         between=["index_date", "last_day_of_month(index_date)"],
         returning="code",
@@ -51,42 +53,54 @@ study = StudyDefinition(
             "ratios": {
                 "Apixaban": 0.25,
                 "Edoxaban": 0.25,
-                "Dabigatran etexilate": 0.25,
+                "Dabigatran": 0.25,
                 "Rivaroxaban": 0.25,
             },
             },
         },
     ),
-    
-     # With these clinical events
-    creatinine=patients.with_these_clinical_events(
-        creatinine_codes,
-        find_last_match_in_period=True,
-        between=["index_date - 12 months", "index_date"],
-        returning="numeric_value",
-        include_date_of_match=True,
-        include_month=True,
+    doac_dose_calculated=patients.categorised_as(
+        {"0": "DEFAULT",
+        "10": "doac = 'Apixaban'",
+        "60": "doac = 'Edoxaban'",
+        "300": "doac = 'Dabigatran'",
+        "20": "doac = 'Rivaroxaban'",
+        },
         return_expectations={
-            "float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
-            "date": {"earliest": "2020-12-01", "latest": "2021-11-01"},
-            "incidence": 0.95,},
+         "category": {"ratios": {"0": 0.1, "10": 0.2, "60": 0.2, "300": 0.25, "20": 0.25}},
+        "incidence": 0.2,
+        },
     ),
-    egfr=patients.with_these_clinical_events(
+    
+    # With these clinical events
+    egfr_recorded=patients.with_these_clinical_events(
         egfr_codes,
         find_last_match_in_period=True,
         between=["index_date - 12 months", "index_date"],
-        returning="numeric_value",
-        include_date_of_match=True,
-        include_month=True,
-        return_expectations={
-            "float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
-            "date": {"earliest": "2020-12-01", "latest": "2021-11-01"},
-            "incidence": 0.95,},
+        returning="binary_flag",
+        return_expectations = {
+            "incidence": 0.2,},
     ),
-    crcl=patients.with_these_clinical_events(
+    crcl_recorded=patients.with_these_clinical_events(
         crcl_codes,
         find_last_match_in_period=True,
         between=["index_date - 12 months", "index_date"],
+        returning="binary_flag",
+        return_expectations = {
+        "incidence": 0.2,},
+    ),
+    weight_recorded=patients.with_these_clinical_events(
+        weight_codes,
+        find_last_match_in_period=True,
+        between=["index_date - 12 months", "index_date"],
+        returning="binary_flag",
+        return_expectations = {
+        "incidence": 0.2,},
+    ),
+    serum_creatinine=patients.with_these_clinical_events(
+        crcl_codes,
+        find_last_match_in_period=True,
+        between=["index_date - 2 years", "index_date"],
         returning="numeric_value",
         include_date_of_match=True,
         include_month=True,
@@ -130,6 +144,17 @@ study = StudyDefinition(
             "float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
             "date": {"earliest": "2020-12-01", "latest": "2021-11-01"},
             "incidence": 0.95,},
+    ),
+    weight_for_crcl=patients.categorised_as(
+        {"missing": "DEFAULT",
+        "actual": """bmi <18.5""",
+        "ideal": """bmi >=18.5 AND bmi <25""",
+        "adjusted": """bmi >=25""",
+        },
+        return_expectations={
+         "category": {"ratios": {"missing": 0.1, "actual": 0.3, "ideal": 0.3, "adjusted": 0.3}},
+        "incidence": 0.8,
+        },
     ),
 
     # Demographic information
@@ -203,6 +228,11 @@ study = StudyDefinition(
             },
         },
     ),
+
+
+
+
+
 )
 
 
@@ -210,17 +240,59 @@ measures = [
     
     Measure(
         id="doacs_by_region",
-        numerator="doacs",
+        numerator="on_doac",
         denominator="population",
         group_by=["region"],
     ),
     
-    #Measure(
-        #id="doacs_by_demographics",
-        #numerator="doacs",
-        #denominator="population",
-        #group_by=["age_band", "sex", "ethnicity", "carer"], # Can I add ethnicity into a measure here?
-    #),
-        
+    Measure(
+        id="doacs_by_age_band",
+        numerator="on_doac",
+        denominator="population",
+        group_by=["age_band"]
+    ),
 
+    Measure(
+        id="doacs_by_sex",
+        numerator="on_doac",
+        denominator="population",
+        group_by=["sex"]
+    ),
+
+    Measure(
+        id="doacs_by_carer",
+        numerator="on_doac",
+        denominator="population",
+        group_by=["carer"]
+    ),
+
+    Measure(
+        id="doacs_by_ethnicity",
+        numerator="on_doac",
+        denominator="population",
+        group_by=["ethnicity"]
+    ),
+
+    Measure(
+        id="doacs_with_weight_recorded",
+        numerator="on_doac",
+        denominator="population",
+        group_by=["weight_recorded"]
+    ),
+
+    Measure(
+        id="doacs_with_egfr_recorded",
+        numerator="on_doac",
+        denominator="population",
+        group_by=["egfr_recorded"]
+    ),
+
+    Measure(
+        id="doacs_with_crcl_recorded",
+        numerator="on_doac",
+        denominator="population",
+        group_by=["crcl_recorded"]
+    ),
+        
 ]
+

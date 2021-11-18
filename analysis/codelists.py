@@ -17,7 +17,7 @@ doac_chemical = codelist_from_csv(
     category_column="chemical"
 )
 
-# Creatinine
+# Serum creatinine
 creatinine_codes = codelist(
     ["XE2q5"],
     system="ctv3",
@@ -29,9 +29,9 @@ egfr_codes = codelist(
     system="snomed",
 )
 
-# Estimated creatinine clearance using Cockcroft-Gault formula
+# Measurement of renal clearance of creatinine (procedure)
 crcl_codes = codelist(
-    ["968191000000100"],
+    ["167181009"],
     system="snomed",
 )
 

@@ -1,7 +1,7 @@
 version: '3.0'
 
 expectations:
-  population_size: 1000
+  population_size: 10000
 
 actions:
 
@@ -33,5 +33,4 @@ actions:
 
   # generate cr/cl
   # join cr/cl
-  # generate doacs
-  # join doacs
+  
