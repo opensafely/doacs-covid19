@@ -32,5 +32,12 @@ actions:
           measure_csv: output/measure_*.csv
 
   # generate cr/cl
+  generate_cr_cl:
+    run: python:latest python analysis/calculate_cr_cl.py
+    needs: [join_ethnicity]
+    outputs:
+      highly_sensitive:
+        cohort: output/df_with_calculation_*.csv
+
   # join cr/cl
   
