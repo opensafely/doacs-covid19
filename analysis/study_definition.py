@@ -299,6 +299,13 @@ measures = [
         denominator="population",
         group_by=["crcl_recorded"]
     ),
+
+    Measure(
+        id="doacs_with_af_recorded",
+        numerator="atrial_fib",
+        denominator="on_doac",
+        group_by=["crcl_recorded"]
+    ),
         
 ]
 
