@@ -43,35 +43,54 @@ study = StudyDefinition(
         return_expectations = {
             "incidence": 0.2,},
     ),
+    ##
     doac=patients.with_these_medications(
-        doac_chemical, 
+        doac_codes, 
         between=["index_date", "last_day_of_month(index_date)"],
         returning="code",
         return_expectations = {
             "rate": "universal",
             "category": {
             "ratios": {
-                "Apixaban": 0.25,
-                "Edoxaban": 0.25,
-                "Dabigatran etexilate": 0.25,
-                "Rivaroxaban": 0.25,
+                "0208020Z0AAAAAA": 0.08,
+                "0208020Z0AAABAB": 0.08,
+                "0208020X0AAABAB": 0.08,
+                "0208020X0AAACAC": 0.08,
+                "0208020X0AAAAAA": 0.08,
+                "0208020AAAAAAAA": 0.08,
+                "0208020AAAAABAB": 0.08,
+                "0208020AAAAACAC": 0.08,
+                "0208020Y0AAAAAA": 0.08,
+                "0208020Y0AAABAB": 0.08,
+                "0208020Y0AAAEAE": 0.08,
+                "0208020Y0AAADAD": 0.06,
+                "0208020Y0AAACAC": 0.06,
             },
             },
         },
     ),
     doac_dose_calculated=patients.categorised_as(
         {"0": "DEFAULT",
-        "10": "doac = 'Apixaban'",
-        "60": "doac = 'Edoxaban'",
-        "300": "doac = 'Dabigatran'",
-        "20": "doac = 'Rivaroxaban'",
+        "A2.5": "doac = '0208020Z0AAAAAA'",
+        "A5": "doac = '0208020Z0AAABAB'",
+        "D110": "doac = '0208020X0AAABAB'",
+        "D150": "doac = '0208020X0AAACAC'",
+        "D75": "doac = '0208020X0AAAAAA'",
+        "E15": "doac = '0208020AAAAAAAA'",
+        "E30": "doac = '0208020AAAAABAB'",
+        "E60": "doac = '0208020AAAAACAC'",
+        "R10": "doac = '0208020Y0AAAAAA'",
+        "R15": "doac = '0208020Y0AAABAB'",
+        "R15/20 titration": "doac = '0208020Y0AAAEAE'",
+        "R2.5": "doac = '0208020Y0AAADAD'",
+        "R20": "doac = '0208020Y0AAACAC'",
         },
         return_expectations={
-         "category": {"ratios": {"0": 0.1, "10": 0.2, "60": 0.2, "300": 0.25, "20": 0.25}},
+         "category": {"ratios": {"0": 0.02, "A2.5": 0.07, "A5": 0.07, "D110": 0.08, "D150": 0.08, "D75": 0.08, "E15": 0.08, "E30": 0.08, "E60": 0.08, "R10": 0.08, "R15": 0.08, "R15/20 titration": 0.08, "R2.5": 0.06, "R20": 0.06,}},
         "incidence": 0.2,
         },
     ),
-    
+        
     # With these clinical events
     egfr_recorded=patients.with_these_clinical_events(
         egfr_codes,
@@ -101,7 +120,7 @@ study = StudyDefinition(
         af_codes,
         on_or_before="index_date",
         returning="binary_flag",
-        return_expectations={"incidence": 0.01,},
+        return_expectations={"incidence": 0.18,},
     ),
     serum_creatinine=patients.with_these_clinical_events(
         crcl_codes,

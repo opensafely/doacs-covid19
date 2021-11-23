@@ -8,7 +8,7 @@ doac_codes = codelist_from_csv(
     "codelists/opensafely-direct-acting-oral-anticoagulants-doac.csv",
     system="snomed",
     column='id',
-    category_column="id"
+    category_column="bnf_code"
 )
 doac_chemical = codelist_from_csv(
     "codelists/opensafely-direct-acting-oral-anticoagulants-doac.csv",
