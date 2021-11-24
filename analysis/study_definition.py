@@ -125,7 +125,7 @@ study = StudyDefinition(
     serum_creatinine=patients.with_these_clinical_events(
         crcl_codes,
         find_last_match_in_period=True,
-        between=["index_date - 2 years", "index_date"],
+        between=["index_date - 12 months", "index_date"],
         returning="numeric_value",
         include_date_of_match=True,
         include_month=True,
