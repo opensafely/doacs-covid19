@@ -193,29 +193,26 @@ study = StudyDefinition(
     age_band=patients.categorised_as(
         {
             "missing": "DEFAULT",
-            "<20": """ age >= 0 AND age < 20""",
-            "20-29": """ age >=  20 AND age < 30""",
+            "18-29": """ age >=  18 AND age < 30""",
             "30-39": """ age >=  30 AND age < 40""",
             "40-49": """ age >=  40 AND age < 50""",
             "50-59": """ age >=  50 AND age < 60""",
             "60-69": """ age >=  60 AND age < 70""",
             "70-79": """ age >=  70 AND age < 80""",
-            "80-89": """ age >=  80 AND age < 90""",
-            ">90": """ age >=  90 AND age < 120""",
+            ">80": """ age >=  80 AND age < 120""",
         },
         return_expectations={
             "rate": "universal",
             "category": {
                 "ratios": {
                     "missing": 0.005,
-                    "<20": 0.12,
-                    "20-29": 0.125,
+                    "18-29": 0.125,
                     "30-39": 0.125,
                     "40-49": 0.125,
                     "50-59": 0.125,
                     "60-69": 0.125,
                     "70-79": 0.125,
-                    ">90": 0.125,
+                    ">80": 0.125,
                 }
             },
         },
