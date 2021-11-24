@@ -25,8 +25,8 @@ af_codes = codelist_from_csv(
 
 # Serum creatinine
 creatinine_codes = codelist(
-    ["XE2q5"],
-    system="ctv3",
+    ["113075003", "1000731000000100", "168154007", "1032061000000100", "15373003", "1010391000000100", "1000981000000100", "1000991000000100", "1001011000000100"],
+    system="snomed",
 )
 
 # eGFR
