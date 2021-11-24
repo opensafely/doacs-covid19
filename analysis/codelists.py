@@ -35,7 +35,7 @@ egfr_codes = codelist(
     system="snomed",
 )
 
-# Measurement of renal clearance of creatinine (procedure)
+# Creatinine clearance test
 crcl_codes = codelist(
     ["167181009"],
     system="snomed",
