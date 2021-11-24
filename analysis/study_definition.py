@@ -288,7 +288,7 @@ measures = [
     Measure(
         id="doacs_with_weight_recorded",
         numerator="on_doac",
-        denominator="patient_id",
+        denominator="population",
         group_by=["weight_recorded"]
     ),
 
