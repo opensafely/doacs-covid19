@@ -96,8 +96,8 @@ for file in os.listdir(OUTPUT_DIR):
 
         
         
-        #df.to_csv(f'output/df_with_calculation_{date}.csv') # this will be a new file
-        df.to_csv(os.path.join(OUTPUT_DIR, file)) # this will overwrite
+        df.to_csv(f'output/df_with_calculation_{date}.csv') # this will be a new file
+        #df.to_csv(os.path.join(OUTPUT_DIR, file)) # this will overwrite
 
 
 
