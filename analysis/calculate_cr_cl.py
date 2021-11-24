@@ -52,6 +52,32 @@ for file in os.listdir(OUTPUT_DIR):
 
         #calculate recommended dose for each doac
         
+        #apixaban
+        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] <15), 'apixaban'] = 'nr'
+
+        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=15) & (df["crcl_2"] <=29), 'apixaban'] = 'A2.5'
+
+        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=30) & (df["age"] >=80) & (df["weight"] >60) & (df["serum_creatinine"] <133), 'apixaban'] = 'A5'
+        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=30) & (df["weight"] <=60) & (df["age"] <80) & (df["serum_creatinine"] <133), 'apixaban'] = 'A5'
+        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=30) & (df["serum_creatinine"] >=133) & (df["weight"] >60) & (df["age"] <80), 'apixaban'] = 'A5'
+
+        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=30) & (df["age"] >=80) & (df["weight"] <=60) & (df["serum_creatinine"] <133), 'apixaban'] = 'A2.5'
+        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=30) & (df["weight"] <=60) & (df["age"] <80) & (df["serum_creatinine"] >=133), 'apixaban'] = 'A2.5'
+        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=30) & (df["serum_creatinine"] >=133) & (df["weight"] <=60) & (df["age"] <80), 'apixaban'] = 'A2.5'
+        
+        #rivaroxaban
+        df.loc[(df["atrial_fib"] == 1) & df["crcl_1"] <15, 'rivaroxaban'] = 'nr'
+
+        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=15) & (df["crcl_2"] <=49), 'rivaroxaban'] = 'R15'
+
+        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >50), 'rivaroxaban'] = 'R20'
+
+        #edoxaban
+
+
+        #dabigatran
+
+        
 
         
         
