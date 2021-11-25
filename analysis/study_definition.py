@@ -287,13 +287,6 @@ measures = [
     ),
 
     Measure(
-        id="doacs_by_ethnicity",
-        numerator="on_doac",
-        denominator="population",
-        group_by=["ethnicity"]
-    ),
-
-    Measure(
         id="doacs_with_weight_recorded",
         numerator="on_doac",
         denominator="population",
@@ -325,7 +318,7 @@ measures = [
         id="doacs_with_af_recorded",
         numerator="on_doac",
         denominator="population",
-        group_by=["af_recorded"]
+        group_by=["atrial_fib"]
     ),
         
 ]
