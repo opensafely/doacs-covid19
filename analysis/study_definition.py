@@ -108,18 +108,26 @@ study = StudyDefinition(
         return_expectations = {
         "incidence": 0.2,},
     ),
-    serum_creatinine=patients.with_these_clinical_events(
-        crcl_codes,
+    serumcreatinine_recorded=patients.with_these_clinical_events(
+        creatinine_codes,
         find_last_match_in_period=True,
         between=["index_date - 12 months", "index_date"],
-        returning="numeric_value",
-        include_date_of_match=True,
-        include_month=True,
-        return_expectations={
-            "float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
-            "date": {"earliest": "2020-12-01", "latest": "2021-11-01"},
-            "incidence": 0.95,},
+        returning="binary_flag",
+        return_expectations = {
+        "incidence": 0.2,},
     ),
+    #serum_creatinine=patients.with_these_clinical_events(
+        #creatinine_codes,
+        #find_last_match_in_period=True,
+        #between=["index_date - 12 months", "index_date"],
+        #returning="numeric_value",
+        #include_date_of_match=True,
+        #include_month=True,
+        #return_expectations={
+            #"float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
+            #"date": {"earliest": "2020-12-01", "latest": "2021-11-01"},
+            #"incidence": 0.95,},
+    #),
     weight_recorded=patients.with_these_clinical_events(
         weight_codes,
         find_last_match_in_period=True,
@@ -307,10 +315,17 @@ measures = [
     ),
 
     Measure(
+        id="doacs_with_serumcreatinine_recorded",
+        numerator="on_doac",
+        denominator="population",
+        group_by=["serumcreatinine_recorded"]
+    ),
+
+    Measure(
         id="doacs_with_af_recorded",
-        numerator="atrial_fib",
-        denominator="on_doac",
-        group_by=["crcl_recorded"]
+        numerator="on_doac",
+        denominator="population",
+        group_by=["af_recorded"]
     ),
         
 ]

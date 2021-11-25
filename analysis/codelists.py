@@ -18,9 +18,8 @@ doac_chemical = codelist_from_csv(
 )
 
 af_codes = codelist_from_csv(
-    "codelists/opensafely-atrial-fibrillation-clinical-finding.csv",
-    system="ctv3",
-    column="CTV3Code"
+    "nhsd-primary-care-domain-refsets-afib_cod.csv",
+    system="snomed",
 )
 
 # Serum creatinine
