@@ -18,7 +18,7 @@ doac_chemical = codelist_from_csv(
 )
 
 af_codes = codelist_from_csv(
-    "nhsd-primary-care-domain-refsets-afib_cod.csv",
+    "codelists/nhsd-primary-care-domain-refsets-afib_cod.csv",
     system="snomed",
 )
 
