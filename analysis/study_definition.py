@@ -288,37 +288,37 @@ measures = [
 
     Measure(
         id="doacs_with_weight_recorded",
-        numerator="on_doac",
+        numerator="weight_recorded",
         denominator="population",
-        group_by=["weight_recorded"]
+        group_by=["on_doac"]
     ),
 
     Measure(
         id="doacs_with_egfr_recorded",
-        numerator="on_doac",
+        numerator="egfr_recorded",
         denominator="population",
-        group_by=["egfr_recorded"]
+        group_by=["on_doac"]
     ),
 
     Measure(
         id="doacs_with_crcl_recorded",
-        numerator="on_doac",
+        numerator="crcl_recorded",
         denominator="population",
-        group_by=["crcl_recorded"]
+        group_by=["on_doac"]
     ),
 
     Measure(
         id="doacs_with_serumcreatinine_recorded",
-        numerator="on_doac",
+        numerator="serumcreatinine_recorded",
         denominator="population",
-        group_by=["serumcreatinine_recorded"]
+        group_by=["on_doac"]
     ),
 
     Measure(
         id="doacs_with_af_recorded",
-        numerator="on_doac",
+        numerator="atrial_fib",
         denominator="population",
-        group_by=["atrial_fib"]
+        group_by=["on_doac"]
     ),
         
 ]
