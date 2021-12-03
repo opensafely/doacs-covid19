@@ -280,6 +280,13 @@ measures = [
     ),
 
     Measure(
+        id="doacs_by_sex_and_age",
+        numerator="on_doac",
+        denominator="population",
+        group_by=["sex", "age"]
+    ),
+
+    Measure(
         id="doacs_by_carer",
         numerator="on_doac",
         denominator="population",
