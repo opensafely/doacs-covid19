@@ -283,7 +283,8 @@ measures = [
         id="doacs_by_sex_and_age",
         numerator="on_doac",
         denominator="population",
-        group_by=["sex", "age"]
+        group_by=["sex", "age"],
+        small_number_suppression=True,
     ),
 
     Measure(
