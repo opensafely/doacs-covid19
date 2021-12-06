@@ -288,10 +288,17 @@ measures = [
     ),
 
     Measure(
-        id="doacs_by_carer",
+        id="doacs_by_carer1",
         numerator="on_doac",
         denominator="population",
         group_by=["carer"]
+    ),
+
+    Measure(
+        id="doacs_by_carer2",
+        numerator="carer",
+        denominator="population",
+        group_by=["on_doac"]
     ),
 
     Measure(
