@@ -26,6 +26,7 @@ af_codes = codelist_from_csv(
 creatinine_codes = codelist(
     ["451..", "44J3.", "44J3z", "4I37.", "X771Q", "X80D7", "XE26a", "XE2q5", "XaERX", "XaERc", "XaETQ", "XacUK"],
     system="CTV3",
+    column='CTV3Code'
 )
 
 # eGFR
