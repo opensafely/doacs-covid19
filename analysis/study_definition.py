@@ -316,9 +316,16 @@ measures = [
     ),
 
     Measure(
-        id="doacs_with_crcl_recorded",
+        id="doacs_with_crcl_recorded1",
         numerator="crcl_recorded",
         denominator="population",
+        group_by=["on_doac"]
+    ),
+
+    Measure(
+        id="doacs_with_crcl_recorded2",
+        numerator="crcl_recorded",
+        denominator="serumcreatinine_recorded",
         group_by=["on_doac"]
     ),
 
@@ -335,6 +342,6 @@ measures = [
         denominator="population",
         group_by=["on_doac"]
     ),
-        
+    
 ]
 
