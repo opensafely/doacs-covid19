@@ -168,7 +168,7 @@ study = StudyDefinition(
     
     # BMI, weight and height
     bmi=patients.most_recent_bmi(
-        on_or_before="last_day_of_month(indsex_date)",
+        on_or_before="last_day_of_month(index_date)",
         minimum_age_at_measurement=18,
         include_measurement_date=True,
         date_format="YYYY-MM",
