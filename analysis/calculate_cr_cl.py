@@ -76,16 +76,16 @@ for file in os.listdir(OUTPUT_DIR):
         df.loc[(df["atrial_fib"] == 1) & df["crcl_2"] <15, 'edoxaban'] = 'nr'
 
         df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=15) & (df["crcl_2"] <=50), 'edoxaban'] = 'E30'
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] >50) & (df["weight"] <=60), 'edoxaban'] = 'E30' ### + IS on certain p-gp inhibitors ciclosporin, dronedarone, erthromycin, ketoconazole
+        df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] >50) & (df["weight"] <=60), 'edoxaban'] = 'E30' ### + IS on certain p-gp inhibitors ciclosporin 80906007, dronedarone 443310000, erthromycin 30427009, ketoconazole 40232005
 
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] >50) & (df["weight"] >60), 'edoxaban'] = 'E60' ### + NOT on certain p-gp inhibitors ciclosporin, dronedarone, erthromycin, ketoconazole
+        df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] >50) & (df["weight"] >60), 'edoxaban'] = 'E60' ### + NOT on certain p-gp inhibitors ciclosporin 80906007, dronedarone 443310000, erthromycin 30427009, ketoconazole 40232005
 
         #dabigatran
         df.loc[(df["atrial_fib"] == 1) & df["crcl_2"] <30, 'dabigatran1'] = 'nr'
         df.loc[(df["atrial_fib"] == 1) & df["crcl_2"] <30, 'dabigatran2'] = 'nr'
 
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=30) & (df["crcl_2"] <=50) & (df["age"] <75), 'dabigatran1'] = 'D110' ### + NOT taking verapamil, no gastritus, esophagitus, gastroesophageal refulx or increased risk of bleeding
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=30) & (df["crcl_2"] <=50) & (df["age"] <75), 'dabigatran2'] = 'D150' ### + NOT taking verapamil, no gastritus, esophagitus, gastroesophageal refulx or increased risk of bleeding
+        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=30) & (df["crcl_2"] <=50) & (df["age"] <75), 'dabigatran1'] = 'D110' ### + NOT taking verapamil 47898004, NO gastritus, esophagitus, gastroesophageal refulx or increased risk of bleeding
+        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=30) & (df["crcl_2"] <=50) & (df["age"] <75), 'dabigatran2'] = 'D150' ### + NOT taking verapamil 47898004, NO gastritus, esophagitus, gastroesophageal refulx or increased risk of bleeding
 
         df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["age"] >=80), 'dabigatran1'] = 'D110' ### + IS taking verapamil
 
