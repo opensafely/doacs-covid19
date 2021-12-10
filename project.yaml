@@ -17,6 +17,13 @@ actions:
       highly_sensitive:
         cohort: output/input_*.csv
 
+  generate_crcl:
+    run: python:latest python analysis/calculate_crcl.py
+    needs: [generate_study_population_1, generate_study_population_2]
+    outputs:
+      highly_sensitive:
+        cohort: output/output/inpu*.csv.csv
+
   #generate_study_population_ethnicity:
     #run: cohortextractor:latest generate_cohort --study-definition study_definition_ethnicity --output-dir=output --output-format=csv
     #outputs:
@@ -32,7 +39,7 @@ actions:
 
   generate_measures:
     run: cohortextractor:latest generate_measures --study-definition study_definition --output-dir=output
-    needs: [generate_study_population_1, generate_study_population_2]
+    needs: [generate_crcl]
     outputs:
         moderately_sensitive:
           measure_csv: output/measure_*.csv
@@ -44,12 +51,6 @@ actions:
       moderately_sensitive:
         notebook: output/report.html
 
-  #generate_cr_cl:
-    #run: python:latest python analysis/calculate_cr_cl.py
-    #needs: [join_ethnicity]
-    #outputs:
-      #highly_sensitive:
-        #cohort: output/df_with_calculation_*.csv
 
   
 
