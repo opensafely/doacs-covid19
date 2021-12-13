@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import os
 import re
 
@@ -53,46 +54,83 @@ for file in os.listdir(OUTPUT_DIR):
         #calculate recommended dose for each doac
         
         #apixaban
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] <15), 'apixaban'] = 'nr'
+        apixaban_conditions = [
+            ((df["atrial_fib"] == 1) & (df["crcl_2"] <15)),
+        ((df["atrial_fib"] == 1) & (df["crcl_1"] >=15) & (df["crcl_2"] <=29)),
+        ((df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["age"] >=80) & (df["weight"] >60) & (df["serum_creatinine"] <133)),
+        ((df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["weight"] <=60) & (df["age"] <80) & (df["serum_creatinine"] <133)),
+        ((df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["serum_creatinine"] >=133) & (df["weight"] >60) & (df["age"] <80)),
+        ((df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["age"] >=80) & (df["weight"] <=60) & (df["serum_creatinine"] <133)),
+        ((df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["weight"] <=60) & (df["age"] <80) & (df["serum_creatinine"] >=133)),
+        ((df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["serum_creatinine"] >=133) & (df["weight"] <=60) & (df["age"] <80))
+        ]
+        
+        apixaban_values = ['nr', 'A2.5', 'A5', 'A5', 'A5', 'A2.5', 'A2.5', 'A2.5']
 
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=15) & (df["crcl_2"] <=29), 'apixaban'] = 'A2.5'
-
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["age"] >=80) & (df["weight"] >60) & (df["serum_creatinine"] <133), 'apixaban'] = 'A5'
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["weight"] <=60) & (df["age"] <80) & (df["serum_creatinine"] <133), 'apixaban'] = 'A5'
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["serum_creatinine"] >=133) & (df["weight"] >60) & (df["age"] <80), 'apixaban'] = 'A5'
-
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["age"] >=80) & (df["weight"] <=60) & (df["serum_creatinine"] <133), 'apixaban'] = 'A2.5'
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["weight"] <=60) & (df["age"] <80) & (df["serum_creatinine"] >=133), 'apixaban'] = 'A2.5'
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["serum_creatinine"] >=133) & (df["weight"] <=60) & (df["age"] <80), 'apixaban'] = 'A2.5'
+        df['apixaban'] = np.select(apixaban_conditions, apixaban_values)
 
         #rivaroxaban
-        df.loc[(df["atrial_fib"] == 1) & df["crcl_2"] <15, 'rivaroxaban'] = 'nr'
+        rivaroxaban_conditions = [
+            ((df["atrial_fib"] == 1) & (df["crcl_2"] <15)),
+        ((df["atrial_fib"] == 1) & (df["crcl_2"] <=49)),
+        ((df["atrial_fib"] == 1) & (df["crcl_2"] >50))
+        ]
+        
+        rivaroxaban_values = ['nr', 'R15', 'R20']
 
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=15) & (df["crcl_2"] <=49), 'rivaroxaban'] = 'R15'
-
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] >50), 'rivaroxaban'] = 'R20'
+        df['rivaroxaban'] = np.select(rivaroxaban_conditions, rivaroxaban_values)
 
         #edoxaban
-        df.loc[(df["atrial_fib"] == 1) & df["crcl_2"] <15, 'edoxaban'] = 'nr'
-
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=15) & (df["crcl_2"] <=50), 'edoxaban'] = 'E30'
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] >50) & (df["weight"] <=60) & (df["on_pgpi"] == '1'), 'edoxaban'] = 'E30' ### + IS on certain p-gp inhibitors ciclosporin 80906007, dronedarone 443310000, erthromycin 30427009, ketoconazole 40232005
-
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] >50) & (df["weight"] >60) & (df["on_pgpi"] == '0'), 'edoxaban'] = 'E60' ### + NOT on certain p-gp inhibitors ciclosporin 80906007, dronedarone 443310000, erthromycin 30427009, ketoconazole 40232005
-
-        #dabigatran
-        df.loc[(df["atrial_fib"] == 1) & df["crcl_2"] <30, 'dabigatran1'] = 'nr'
-        df.loc[(df["atrial_fib"] == 1) & df["crcl_2"] <30, 'dabigatran2'] = 'nr'
-
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=30) & (df["crcl_2"] <=50) & (df["age"] <75) & (df["on_verapamil"] == '0') & (df["contra_indications"] == '0'), 'dabigatran1'] = 'D110' ### + NOT taking verapamil 47898004, NO gastritus, esophagitus, gastroesophageal refulx or increased risk of bleeding
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_1"] >=30) & (df["crcl_2"] <=50) & (df["age"] <75) & (df["on_verapamil"] == '0') & (df["contra_indications"] == '0'), 'dabigatran2'] = 'D150' ### + NOT taking verapamil 47898004, NO gastritus, esophagitus, gastroesophageal refulx or increased risk of bleeding
-
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["age"] >=80) & (df["on_verapamil"] == '1'), 'dabigatran1'] = 'D110' ### + IS taking verapamil
-
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["age"] >=75) & (df["age"] <=80) & (df["contra_indications"] == '1'), 'dabigatran1'] = 'D110' ### + HAS gastritus, esophagitus, gastroesophageal refulx or increased risk of bleeding
-        df.loc[(df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["age"] >=75) & (df["age"] <=80) & (df["contra_indications"] == '1'), 'dabigatran2'] = 'D150' ### + HAS gastritus, esophagitus, gastroesophageal refulx or increased risk of bleeding
-
+        edoxaban_conditions = [
+            ((df["atrial_fib"] == 1) & (df["crcl_2"] <15)),
+        ((df["atrial_fib"] == 1) & (df["crcl_1"] >=15) & (df["crcl_2"] <=50)),
+        ((df["atrial_fib"] == 1) & (df["crcl_2"] >50) & (df["weight"] <=60) & (df["on_pgpi"] == 1)), ### + IS on certain p-gp inhibitors ciclosporin 80906007, dronedarone 443310000, erthromycin 30427009, ketoconazole 40232005
+        ((df["atrial_fib"] == 1) & (df["crcl_2"] >50) & (df["weight"] >60) & (df["on_pgpi"] == 0)) ### + NOT on certain p-gp inhibitors ciclosporin 80906007, dronedarone 443310000, erthromycin 30427009, ketoconazole 40232005
+        ]
         
+        edoxaban_values = ['nr', 'E30', 'E30', 'E60']
+
+        df['edoxaban'] = np.select(edoxaban_conditions, edoxaban_values)
+
+        #dabigatran110
+        dabigatran110_conditions = [
+            ((df["atrial_fib"] == 1) & (df["crcl_2"] <30)),
+            ((df["atrial_fib"] == 1) & (df["crcl_1"] >=30) & (df["crcl_2"] <=50) & (df["age"] <75) & (df["on_verapamil"] == 0) & (df["contra_indications"] == 0)), ### + NOT taking verapamil 47898004, NO gastritus, esophagitus, gastroesophageal refulx or increased risk of bleeding
+            ((df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["age"] >=80) & (df["on_verapamil"] == '1')), ### + IS taking verapamil
+            ((df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["age"] >=75) & (df["age"] <=80) & (df["contra_indications"] == 1)) ### + HAS gastritus, esophagitus, gastroesophageal refulx or increased risk of bleeding
+        ]
+        
+        dabigatran110_values = ['nr', 'D110', 'D110', 'D110']
+
+        df['dabigatran110'] = np.select(dabigatran110_conditions, dabigatran110_values)
+
+        #dabigatran150
+        dabigatran150_conditions = [
+            ((df["atrial_fib"] == 1) & df["crcl_2"] <30),
+            ((df["atrial_fib"] == 1) & (df["crcl_1"] >=30) & (df["crcl_2"] <=50) & (df["age"] <75) & (df["on_verapamil"] == 0) & (df["contra_indications"] == 0)), ### + NOT taking verapamil 47898004, NO gastritus, esophagitus, gastroesophageal refulx or increased risk of bleeding
+            ((df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["age"] >=75) & (df["age"] <=80) & (df["contra_indications"] == 1)) ### + HAS gastritus, esophagitus, gastroesophageal refulx or increased risk of bleeding
+        ]
+
+        dabigatran150_values = ['nr', 'D150', 'D150']
+
+        df['dabigatran150'] = np.select(dabigatran150_conditions, dabigatran150_values)
+       
+        #now need to check if on correct dose!
+        conditions = [
+            (df['doac_dose_calculated'] == df['apixaban']),
+        (df['doac_dose_calculated'] == df['rivaroxaban']),
+        (df['doac_dose_calculated'] == df['edoxaban']),
+        (df['doac_dose_calculated'] == df['dabigatran110']),
+        (df['doac_dose_calculated'] == df['dabigatran150'])
+        ]
+
+        values = ['apixaban', 'rivaroxaban', 'edoxaban', 'dabigatran110', 'dabigatran150']
+
+        df['dose_match'] = np.select(conditions, values)
+        
+        
+
+
 
         
         #df.to_csv(f'output/df_with_calculation_{date}.csv') # this will be a new file
