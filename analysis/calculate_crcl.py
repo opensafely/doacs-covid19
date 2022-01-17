@@ -124,7 +124,7 @@ for file in os.listdir(OUTPUT_DIR):
         (df['doac_dose_calculated'] == df['dabigatran150'])
         ]
 
-        values = ['true', 'true', 'true', 'true', 'true']
+        values = ['1', '1', '1', '1', '1']
 
         df['dose_match'] = np.select(conditions, values)
         
