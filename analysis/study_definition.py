@@ -266,17 +266,17 @@ measures = [
     ),
     
     Measure(
-        id="doacs_by_age_band",
-        numerator="on_doac",
-        denominator="population",
-        group_by=["age_band"]
-    ),
-
-    Measure(
         id="doacs_by_sex",
         numerator="on_doac",
         denominator="population",
         group_by=["sex"]
+    ),
+
+    Measure(
+        id="doacs_by_age_band",
+        numerator="on_doac",
+        denominator="population",
+        group_by=["age_band"]
     ),
 
     Measure(
@@ -288,14 +288,7 @@ measures = [
     ),
 
     Measure(
-        id="doacs_by_carer1",
-        numerator="on_doac",
-        denominator="population",
-        group_by=["carer"]
-    ),
-
-    Measure(
-        id="doacs_by_carer2",
+        id="doacs_by_carer",
         numerator="carer",
         denominator="population",
         group_by=["on_doac"]
@@ -316,16 +309,9 @@ measures = [
     ),
 
     Measure(
-        id="doacs_with_crcl_recorded1",
+        id="doacs_with_crcl_recorded",
         numerator="crcl_recorded",
         denominator="population",
-        group_by=["on_doac"]
-    ),
-
-    Measure(
-        id="doacs_with_crcl_recorded2",
-        numerator="crcl_recorded",
-        denominator="serumcreatinine_recorded",
         group_by=["on_doac"]
     ),
 
@@ -333,6 +319,13 @@ measures = [
         id="doacs_with_serumcreatinine_recorded",
         numerator="serumcreatinine_recorded",
         denominator="population",
+        group_by=["on_doac"]
+    ),
+
+    Measure(
+        id="doacs_with_serumcreatinine_and_crcl_recorded",
+        numerator="crcl_recorded",
+        denominator="serumcreatinine_recorded",
         group_by=["on_doac"]
     ),
 
