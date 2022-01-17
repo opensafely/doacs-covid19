@@ -106,7 +106,7 @@ for file in os.listdir(OUTPUT_DIR):
 
         #dabigatran150
         dabigatran150_conditions = [
-            ((df["atrial_fib"] == 1) & df["crcl_2"] <30),
+            ((df["atrial_fib"] == 1) & (df["crcl_2"] <30)),
             ((df["atrial_fib"] == 1) & (df["crcl_1"] >=30) & (df["crcl_2"] <=50) & (df["age"] <75) & (df["on_verapamil"] == 0) & (df["contra_indications"] == 0)), ### + NOT taking verapamil 47898004, NO gastritus, esophagitus, gastroesophageal refulx or increased risk of bleeding
             ((df["atrial_fib"] == 1) & (df["crcl_2"] >=30) & (df["age"] >=75) & (df["age"] <=80) & (df["contra_indications"] == 1)) ### + HAS gastritus, esophagitus, gastroesophageal refulx or increased risk of bleeding
         ]
@@ -124,7 +124,7 @@ for file in os.listdir(OUTPUT_DIR):
         (df['doac_dose_calculated'] == df['dabigatran150'])
         ]
 
-        values = ['apixaban', 'rivaroxaban', 'edoxaban', 'dabigatran110', 'dabigatran150']
+        values = ['true', 'true', 'true', 'true', 'true']
 
         df['dose_match'] = np.select(conditions, values)
         
