@@ -5,7 +5,7 @@ from codelists import *
 from datetime import date
 
 study = StudyDefinition(
-    index_date = "2021-12 -01",
+    index_date = "2021-12-01",
 
     # Default expectations
     default_expectations={
