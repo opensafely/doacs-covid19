@@ -5,7 +5,7 @@ from codelists import *
 from datetime import date
 
 study = StudyDefinition(
-    index_date = "2021-11-01",
+    index_date = "2021-12 -01",
 
     # Default expectations
     default_expectations={
@@ -222,7 +222,7 @@ study = StudyDefinition(
     ),
     carer=patients.with_these_clinical_events(
         carer,
-        between=["index_date", "last_day_of_month(index_date)"],
+        on_or_before="last_day_of_month(index_date)",
         returning = "binary_flag",
         find_last_match_in_period = True,
         return_expectations = {
