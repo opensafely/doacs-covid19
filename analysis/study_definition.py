@@ -138,7 +138,7 @@ study = StudyDefinition(
     ),
     atrial_fib=patients.with_these_clinical_events(
         af_codes,
-        between=["index_date - 12 months", "index_date"],
+        between=["index_date - 4 years", "index_date"],
         returning="binary_flag",
         return_expectations={"incidence": 0.18,},
     ),
@@ -222,7 +222,7 @@ study = StudyDefinition(
     ),
     carer=patients.with_these_clinical_events(
         carer,
-        on_or_before="last_day_of_month(index_date)",
+        between=["index_date - 4 years", "index_date"],
         returning = "binary_flag",
         find_last_match_in_period = True,
         return_expectations = {
