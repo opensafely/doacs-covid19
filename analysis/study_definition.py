@@ -336,5 +336,12 @@ measures = [
         group_by=["on_doac"]
     ),
     
+    Measure(
+        id="doacs_with_af_and_crcl_recorded",
+        numerator="crcl_recorded",
+        denominator="atrial_fib",
+        group_by=["on_doac"]
+    ),
+    
 ]
 
