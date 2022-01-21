@@ -35,6 +35,8 @@ for file in os.listdir(OUTPUT_DIR):
         df.loc[df["sex"] == 'F', 'IBW'] = 45.5 + (2.3 * (df.height - 60))
         df["ADJ"] = df.IBW + 0.4 * (df.ABW - df.IBW)
 
+        #IF BMI NOT PRESENT, CALCULATE FROM WEIGHT/HEIGHT
+        
         #weight for calculation
         df.loc[df["bmi"] <30, 'weight_crcl_1'] = df.ABW
         df.loc[df["bmi"] >=30,'weight_crcl_1'] = df.IBW
@@ -72,7 +74,7 @@ for file in os.listdir(OUTPUT_DIR):
         #rivaroxaban
         rivaroxaban_conditions = [
             ((df["atrial_fib"] == 1) & (df["crcl_2"] <15)),
-        ((df["atrial_fib"] == 1) & (df["crcl_2"] <=49)),
+        ((df["atrial_fib"] == 1) & (df["crcl_2"] >=15) & (df["crcl_2"] <=49)),
         ((df["atrial_fib"] == 1) & (df["crcl_2"] >50))
         ]
         
