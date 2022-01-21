@@ -138,7 +138,7 @@ study = StudyDefinition(
     ),
     atrial_fib=patients.with_these_clinical_events(
         af_codes,
-        between=["index_date - 12 months", "index_date"],,
+        between=["index_date - 12 months", "index_date"],
         returning="binary_flag",
         return_expectations={"incidence": 0.18,},
     ),
@@ -146,37 +146,37 @@ study = StudyDefinition(
 
     # BMI, weight and height
     bmi=patients.most_recent_bmi(
-        between=["index_date - 12 months", "index_date"],,
+        between=["index_date - 12 months", "index_date"],
         minimum_age_at_measurement=18,
         include_measurement_date=True,
         date_format="YYYY-MM",
         return_expectations={
-            "date": {"earliest": "2019-12-01", "latest": "2021-10-31"},
+            "date": {"earliest": "2021-01-01", "latest": "2021-12-01"},
             "float": {"distribution": "normal", "mean": 28, "stddev": 8},
             "incidence": 0.80,}
     ),
     weight=patients.with_these_clinical_events(
         weight_codes,
         find_last_match_in_period=True,
-        between=["index_date - 12 months", "index_date"],,
+        between=["index_date - 12 months", "index_date"],
         returning="numeric_value",
         include_date_of_match=True,
         include_month=True,
         return_expectations={
             "float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
-            "date": {"earliest": "2020-12-01", "latest": "2021-11-01"},
+            "date": {"earliest": "2021-01-01", "latest": "2021-12-01"},
             "incidence": 0.95,},
     ),
     height=patients.with_these_clinical_events(
         height_codes,
         find_last_match_in_period=True,
-        between=["index_date - 12 months", "index_date"],,
+        between=["index_date - 12 months", "index_date"],
         returning="numeric_value",
         include_date_of_match=True,
         include_month=True,
         return_expectations={
             "float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
-            "date": {"earliest": "2020-12-01", "latest": "2021-11-01"},
+            "date": {"earliest": "2021-01-01", "latest": "2021-12-01"},
             "incidence": 0.95,},
     ),
 
