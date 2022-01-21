@@ -138,7 +138,7 @@ study = StudyDefinition(
     ),
     atrial_fib=patients.with_these_clinical_events(
         af_codes,
-        between=["index_date - 4 years", "index_date"],
+        on_or_before="last_day_of_month(index_date)",
         returning="binary_flag",
         return_expectations={"incidence": 0.18,},
     ),
@@ -146,7 +146,7 @@ study = StudyDefinition(
 
     # BMI, weight and height
     bmi=patients.most_recent_bmi(
-        between=["index_date - 12 months", "index_date"],
+        on_or_before="last_day_of_month(index_date)",
         minimum_age_at_measurement=18,
         include_measurement_date=True,
         date_format="YYYY-MM",
@@ -158,7 +158,7 @@ study = StudyDefinition(
     weight=patients.with_these_clinical_events(
         weight_codes,
         find_last_match_in_period=True,
-        between=["index_date - 12 months", "index_date"],
+        on_or_before="last_day_of_month(index_date)",
         returning="numeric_value",
         include_date_of_match=True,
         include_month=True,
@@ -170,7 +170,7 @@ study = StudyDefinition(
     height=patients.with_these_clinical_events(
         height_codes,
         find_last_match_in_period=True,
-        between=["index_date - 12 months", "index_date"],
+        on_or_before="last_day_of_month(index_date)",
         returning="numeric_value",
         include_date_of_match=True,
         include_month=True,
