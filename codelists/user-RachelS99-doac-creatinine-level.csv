@@ -1,0 +1,173 @@
+code,term
+1000001000000103,Urine tryptophan:creatinine ratio
+1000011000000101,Urine threonine:creatinine ratio
+1000021000000107,Urine taurine:creatinine ratio
+1000031000000109,Urine phenylalanine:creatinine ratio
+1000041000000100,Urine ornithine:creatinine ratio
+1000051000000102,Urine methionine:creatinine ratio
+1000061000000104,Urine lysine:creatinine ratio
+1000071000000106,Urine homocystine:creatinine ratio
+1000081000000108,Urine glutamine:creatinine ratio
+1000091000000105,Urine isoleucine:creatinine ratio
+1000101000000102,Urine glycine:creatinine ratio
+1000111000000100,Urine methylmalonic acid:creatinine ratio
+1000121000000106,Urine arginine:creatinine ratio
+1000131000000108,Urine cystine:creatinine ratio
+1000141000000104,Urine histidine:creatinine ratio
+1000391000000107,Urine deoxypyridinoline/creatinine ratio
+1000411000000107,Urine mandelic acid:creatinine ratio
+1000421000000101,Urine pregnanediol:creatinine ratio
+1000431000000104,Urine 11 betahydroxy aetiocholanolone:creatinine ratio
+1000611000000105,Urine 11 betahydroxy androsterone:creatinine ratio
+1000731000000107,Serum creatinine level
+1000981000000109,Corrected plasma creatinine level
+1000991000000106,Corrected serum creatinine level
+1001011000000107,Plasma creatinine level
+1001711000000109,Urine aetiocholanolone:creatinine ratio
+1001721000000103,Urine 11 oxo-pregnanetriol:creatinine ratio
+1001731000000101,Urine androsterone:creatinine ratio
+1002131000000109,N-telopeptide cross link/creatinine ratio
+1002181000000108,Urine copper/creatinine ratio
+1002361000000102,Urine tetrahydro-11-deoxycortisol:creatinine ratio
+1002601000000109,Urine tetrahydrocortisone:creatinine ratio
+1002621000000100,Urine tetrahydrocortisol:creatinine ratio
+1002981000000105,Urine oxalate/creatinine ratio
+1003271000000106,Urine creatinine level
+1004391000000104,Urine delta-aminolaevulinic acid:creatinine ratio
+1005581000000106,Amylase clearance
+1006221000000104,Chloride/creatinine ratio
+1006501000000106,Calculated tubular maximal reabsorption of phosphate/glomerular filtration rate
+1006631000000104,Random urine protein:creatinine ratio
+1007751000000104,Urine tetrahydrocorticosterone:creatinine ratio
+1007901000000103,Urine orotic acid:creatinine ratio
+1010391000000109,Fluid sample creatinine
+1011301000000105,Urine 17 alpha hydroxy pregnanolone:creatinine ratio
+1011441000000102,Urine chloride:creatinine ratio
+1011451000000104,Urine N-telopeptide:creatinine ratio
+1011481000000105,Estimated glomerular filtration rate using creatinine Chronic Kidney Disease Epidemiology Collaboration equation per 1.73 square metres
+1011491000000107,Estimated glomerular filtration rate using cystatin C Chronic Kidney Disease Epidemiology Collaboration equation per 1.73 square metres
+1011911000000108,Dialysis fluid creatinine level
+1013731000000104,Urine glycosaminoglycan:creatinine ratio
+1014861000000102,Urine 3-methoxytyramine/creatinine ratio
+1015641000000101,Urine vanillylmandelic acid/creatinine ratio
+1015971000000100,Renal function tests
+1015981000000103,Creatinine clearance test
+1015991000000101,Ammonium chloride acidification test
+1016121000000105,Retinol binding protein creatinine ratio
+1017061000000100,17 alpha hydroxy pregnanolone:creatinine ratio
+1018021000000107,Aminolaevulinic acid/creatinine ratio
+1018051000000102,Urine coproporphyrin/creatinine ratio
+1018061000000104,Urine uroporphyrin/creatinine ratio
+1019801000000102,24 hour urine creatinine output
+1020021000000103,Phosphate tubular reabsorption rate
+1020291000000106,Glomerular filtration rate calculated by abbreviated Modification of Diet in Renal Disease Study Group calculation
+1021491000000100,Urine homovanillic acid/creatinine ratio
+1021501000000106,Urine cortisol/creatinine ratio
+1021511000000108,Urine metadrenaline/creatinine ratio
+1021521000000102,Urine normetadrenaline/creatinine ratio
+1021831000000103,Urate clearance test
+1023491000000104,Urine albumin:creatinine ratio
+1026891000000108,11 betahydroxy androsterone:creatinine ratio
+1026901000000109,Aetiocholanolone:creatinine ratio
+1026911000000106,Androsterone:creatinine ratio
+1027041000000106,11 betahydroxy aetiocholanolone:creatinine ratio
+1027791000000103,Urine microalbumin/creatinine ratio
+1027951000000108,Calcium/creatinine ratio
+1027961000000106,Mandelic acid/creatinine ratio
+1028131000000104,Blood urea/renal function
+1028271000000109,Albumin/creatinine ratio
+1028391000000100,Citrate/creatinine ratio
+1028731000000100,Urine protein/creatinine ratio
+1028941000000106,Deoxypyridinoline/creatinine ratio
+1029411000000105,Cobalt/creatinine ratio
+1029421000000104,Chromium/creatinine ratio
+1029581000000102,Glycolate/creatinine ratio
+1029591000000100,Cadmium/creatinine ratio
+1029601000000106,Zinc/creatinine ratio
+1029611000000108,Urea/creatinine ratio
+1029621000000102,Lead/creatinine ratio
+1029641000000109,Aspartate/creatinine ratio
+1029651000000107,Amylase/creatinine ratio
+1029661000000105,Alanine/creatinine ratio
+1029671000000103,Phosphate/creatinine ratio
+1029941000000104,Homocysteine/creatinine ratio
+1029951000000101,Glycine/creatinine ratio
+1029961000000103,Glutamic acid/creatinine ratio
+1029971000000105,Histidine/creatinine ratio
+1029981000000107,Cystine/creatinine ratio
+1029991000000109,Leucine/creatinine ratio
+1030051000000106,5-hydroxyindoleacetic acid/creatinine ratio
+1030321000000104,Pregnanediol/creatinine ratio
+1030331000000102,Glutamine/creatinine ratio
+1030341000000106,Proline/creatinine ratio
+1030351000000109,Threonine/creatinine ratio
+1030361000000107,Tryptophan/creatinine ratio
+1030371000000100,Tyrosine/creatinine ratio
+1030381000000103,Taurine/creatinine ratio
+1030391000000101,Methionine/creatinine ratio
+1030401000000103,Ornithine/creatinine ratio
+1030421000000107,Tetrahydrocorticosterone/creatinine ratio
+1030431000000109,Tetrahydrocortisone/creatinine ratio
+1030441000000100,Tetrahydro-11-deoxycortisol/creatinine ratio
+1030471000000106,Catecholamine/creatinine ratio
+1030671000000108,11 oxo-pregnanetriol:creatinine ratio
+1030991000000102,Urine protein/creatinine index
+1031011000000101,Dopamine/creatinine ratio
+1031471000000102,Magnesium/creatinine ratio
+1031671000000100,Isoleucine/creatinine ratio
+1031681000000103,Arginine/creatinine ratio
+1031841000000105,Valine/creatinine ratio
+1031851000000108,Serine/creatinine ratio
+1031861000000106,Phenylalanine/creatinine ratio
+1031871000000104,Lysine/creatinine ratio
+1031881000000102,Homocystine/creatinine ratio
+1031891000000100,Tetrahydrocortisol/creatinine ratio
+1031901000000104,Pregnanetriol/creatinine ratio
+1031921000000108,Methylmalonic acid/creatinine ratio
+1032061000000108,Creatinine level
+1106601000000100,Substance concentration of creatinine in plasma
+1107001000000108,Substance concentration of creatinine in serum
+1107011000000105,Substance concentration of creatinine in urine
+1107411000000104,Estimated glomerular filtration rate by laboratory calculation
+1109421000000104,Substance concentration of creatinine in plasma using colorimetric analysis
+1109431000000102,Substance concentration of creatinine in plasma using enzymatic analysis
+1109441000000106,Substance concentration of creatinine in serum using colorimetric analysis
+1109451000000109,Substance concentration of creatinine in serum using enzymatic analysis
+113075003,"Creatinine measurement, serum"
+15373003,Creatinine
+168154007,Sample creatinine &/or fluid
+275792000,Creatinine in sample
+313822004,Corrected serum creatinine measurement
+857971000000104,Estimated glomerular filtration rate using Chronic Kidney Disease Epidemiology Collaboration formula
+963601000000106,Estimated glomerular filtration rate using cystatin C Chronic Kidney Disease Epidemiology Collaboration equation
+963621000000102,Estimated glomerular filtration rate using creatinine Chronic Kidney Disease Epidemiology Collaboration equation
+968191000000100,Estimated creatinine clearance using Cockcroft-Gault formula
+994341000000101,Urine urate/creatinine ratio
+994501000000108,Water deprivation test
+994511000000105,Urine calcium/creatinine ratio
+996231000000108,Glomerular filtration rate calculated by abbreviated Modification of Diet in Renal Disease Study Group calculation adjusted for African American origin
+997801000000104,Urine magnesium:creatinine ratio
+997811000000102,Urine urea:creatinine ratio
+997821000000108,Urine serine:creatinine ratio
+997831000000105,Urine retinol binding protein:creatinine ratio
+997841000000101,Urine proline:creatinine ratio
+997851000000103,Urine pregnanetriol:creatinine ratio
+997861000000100,Urine glutamic acid:creatinine ratio
+997871000000107,Urine citrate:creatinine ratio
+997881000000109,Urine zinc:creatinine ratio
+997911000000109,Urine lead:creatinine ratio
+997921000000103,Urine cobalt:creatinine ratio
+997931000000101,Urine cadmium:creatinine ratio
+997941000000105,Urine chromium:creatinine ratio
+998491000000109,Urine glycolate:creatinine ratio
+999871000000102,Urine amylase:creatinine ratio
+999881000000100,Urine phosphate:creatinine ratio
+999901000000102,Urine dopamine:creatinine ratio
+999911000000100,Urine 5-hydroxyindoleacetic acid:creatinine ratio
+999931000000108,Urine catecholamine:creatinine ratio
+999941000000104,Urine leucine:creatinine ratio
+999951000000101,Urine homocysteine:creatinine ratio
+999961000000103,Urine aspartate:creatinine ratio
+999971000000105,Urine alanine:creatinine ratio
+999981000000107,Urine valine:creatinine ratio
+999991000000109,Urine tyrosine:creatinine ratio

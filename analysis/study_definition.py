@@ -131,18 +131,6 @@ study = StudyDefinition(
         return_expectations = {
         "incidence": 0.2,},
     ),
-    serum_creatinine=patients.with_these_clinical_events(
-        creatinine_codes,
-        find_last_match_in_period=True,
-        between=["index_date - 12 months", "index_date"],
-        returning="numeric_value",
-        include_date_of_match=True,
-        include_month=True,
-        return_expectations={
-            "float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
-            "date": {"earliest": "2020-12-01", "latest": "2021-11-01"},
-            "incidence": 0.95,},
-    ),
     contra_indications=patients.with_these_clinical_events(
         contra_codes,
         find_last_match_in_period=True,
@@ -177,18 +165,132 @@ study = StudyDefinition(
             "float": {"distribution": "normal", "mean": 28, "stddev": 8},
             "incidence": 0.80,}
     ),
+    crcl=patients.with_these_clinical_events(
+        crcl_codes,
+        find_last_match_in_period=True,
+        between=["index_date - 12 months", "index_date"],
+        returning="numeric_value",
+        return_expectations={
+            "float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
+            "incidence": 0.95,},
+    ),
+    crcl_comparator=patients.comparator_from(
+        "crcl",
+        return_expectations={
+            "rate": "universal",
+            "category": {
+                "ratios": {  # ~, =, >= , > , < , <=
+                    None: 0.10,
+                    "~": 0.05,
+                    "=": 0.65,
+                    ">=": 0.05,
+                    ">": 0.05,
+                    "<": 0.05,
+                    "<=": 0.05,
+                }
+            },
+            "incidence": 0.80,
+        },
+    ),
+    crcl_exclude=patients.categorised_as(
+        {
+            "0": "DEFAULT",
+            "1": """ (( NOT crcl_comparator = '>=' ) AND ( NOT crcl_comparator = '<=' ) AND ( NOT crcl_comparator = '~' ) AND ( NOT crcl_comparator='>') AND ( NOT crcl_comparator = '<' )) """,
+        },
+        return_expectations={
+            "rate": "universal",
+            "category": {
+                "ratios": {
+                    "0": 0.94,
+                    "1": 0.06,
+                }
+            },
+        },
+    ),               
+    serumcreatinine=patients.with_these_clinical_events(
+        creatinine_codes,
+        find_last_match_in_period=True,
+        between=["index_date - 12 months", "index_date"],
+        returning="numeric_value",
+        return_expectations={
+            "float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
+            "incidence": 0.95,},
+    ),
+    serumcreatinine_comparator=patients.comparator_from(
+        "serumcreatinine",
+        return_expectations={
+            "rate": "universal",
+            "category": {
+                "ratios": {  # ~, =, >= , > , < , <=
+                    None: 0.10,
+                    "~": 0.05,
+                    "=": 0.65,
+                    ">=": 0.05,
+                    ">": 0.05,
+                    "<": 0.05,
+                    "<=": 0.05,
+                }
+            },
+            "incidence": 0.80,
+        },
+    ),
+    serumcreatininecreatinine_exclude=patients.categorised_as(
+        {
+            "0": "DEFAULT",
+            "1": """ (( NOT serumcreatinine_comparator = '>=' ) AND ( NOT serumcreatinine_comparator = '<=' ) AND ( NOT serumcreatinine_comparator = '~' ) AND ( NOT serumcreatinine_comparator='>') AND ( NOT serumcreatinine_comparator = '<' )) """,
+        },
+        return_expectations={
+            "rate": "universal",
+            "category": {
+                "ratios": {
+                    "0": 0.94,
+                    "1": 0.06,
+                }
+            },
+        },
+    ),               
     weight=patients.with_these_clinical_events(
         weight_codes,
         find_last_match_in_period=True,
         on_or_before="last_day_of_month(index_date)",
         returning="numeric_value",
-        include_date_of_match=True,
-        include_month=True,
         return_expectations={
             "float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
-            "date": {"earliest": "2021-01-01", "latest": "2021-12-01"},
             "incidence": 0.95,},
     ),
+    weight_comparator=patients.comparator_from(
+        "weight",
+        return_expectations={
+            "rate": "universal",
+            "category": {
+                "ratios": {  # ~, =, >= , > , < , <=
+                    None: 0.10,
+                    "~": 0.05,
+                    "=": 0.65,
+                    ">=": 0.05,
+                    ">": 0.05,
+                    "<": 0.05,
+                    "<=": 0.05,
+                }
+            },
+            "incidence": 0.80,
+        },
+    ),
+    weight_exclude=patients.categorised_as(
+        {
+            "0": "DEFAULT",
+            "1": """ (( NOT weight_comparator = '>=' ) AND ( NOT weight_comparator = '<=' ) AND ( NOT weight_comparator = '~' ) AND ( NOT weight_comparator='>') AND ( NOT weight_comparator = '<' )) """,
+        },
+        return_expectations={
+            "rate": "universal",
+            "category": {
+                "ratios": {
+                    "0": 0.94,
+                    "1": 0.06,
+                }
+            },
+        },
+    ),               
     height=patients.with_these_clinical_events(
         height_codes,
         find_last_match_in_period=True,
@@ -362,6 +464,13 @@ measures = [
         id="doacs_with_af_and_crcl_recorded",
         numerator="crcl_recorded",
         denominator="atrial_fib",
+        group_by=["on_doac"]
+    ),
+    
+    Measure(
+        id="doacs_dose_match",
+        numerator="af_&_crcl",
+        denominator="dose_match",
         group_by=["on_doac"]
     ),
     
