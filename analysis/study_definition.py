@@ -469,8 +469,8 @@ measures = [
     
     Measure(
         id="doacs_dose_match",
-        numerator="af_&_crcl",
-        denominator="dose_match",
+        numerator="dose_match",
+        denominator="af_&_crcl",
         group_by=["on_doac"]
     ),
     
