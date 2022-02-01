@@ -26,7 +26,7 @@ af_codes = codelist_from_csv(
 #  Serum creatinine
 creatinine_codes = codelist(
     ["codelists/user-RachelS99-doac-creatinine-level.csv"],
-    system="snomed"
+    system="snomed",
     column="code",
 )
 
