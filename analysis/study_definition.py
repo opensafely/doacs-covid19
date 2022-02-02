@@ -1,19 +1,25 @@
 # Import functions
 from typing import DefaultDict
-from cohortextractor import StudyDefinition, Measure, codelist, codelist_from_csv, combine_codelists, filter_codes_by_category, patients
+from cohortextractor import (
+    StudyDefinition,
+    Measure,
+    codelist,
+    codelist_from_csv,
+    combine_codelists,
+    filter_codes_by_category,
+    patients,
+)
 from codelists import *
 from datetime import date
 
 study = StudyDefinition(
-    index_date = "2021-12-01",
-
+    index_date="2021-12-01",
     # Default expectations
     default_expectations={
         "date": {"earliest": "1970-01-01", "latest": "index_date"},
         "rate": "uniform",
         "incidence": 0.2,
     },
-
     # Define study population
     population=patients.satisfying(
         """
@@ -33,127 +39,159 @@ study = StudyDefinition(
             returning="binary_flag",
         ),
     ),
-
     # With these medications
     on_doac=patients.with_these_medications(
-        doac_codes, 
+        doac_codes,
         between=["index_date", "last_day_of_month(index_date)"],
         returning="binary_flag",
-        find_last_match_in_period = True,
-        return_expectations = {
-            "incidence": 0.2,},
+        find_last_match_in_period=True,
+        return_expectations={
+            "incidence": 0.2,
+        },
     ),
     on_pgpi=patients.with_these_medications(
-        pgpi_codes, 
+        pgpi_codes,
         between=["index_date", "last_day_of_month(index_date)"],
         returning="binary_flag",
-        find_last_match_in_period = True,
-        return_expectations = {
-            "incidence": 0.1,},
+        find_last_match_in_period=True,
+        return_expectations={
+            "incidence": 0.1,
+        },
     ),
     on_verapamil=patients.with_these_medications(
-        verapamil_codes, 
+        verapamil_codes,
         between=["index_date", "last_day_of_month(index_date)"],
         returning="binary_flag",
-        find_last_match_in_period = True,
-        return_expectations = {
-            "incidence": 0.1,},
+        find_last_match_in_period=True,
+        return_expectations={
+            "incidence": 0.1,
+        },
     ),
     doac=patients.with_these_medications(
-        doac_codes, 
+        doac_codes,
         between=["index_date", "last_day_of_month(index_date)"],
         returning="code",
-        return_expectations = {
+        return_expectations={
             "rate": "universal",
             "category": {
-            "ratios": {
-                "0208020Z0AAAAAA": 0.08,
-                "0208020Z0AAABAB": 0.08,
-                "0208020X0AAABAB": 0.08,
-                "0208020X0AAACAC": 0.08,
-                "0208020X0AAAAAA": 0.08,
-                "0208020AAAAAAAA": 0.08,
-                "0208020AAAAABAB": 0.08,
-                "0208020AAAAACAC": 0.08,
-                "0208020Y0AAAAAA": 0.08,
-                "0208020Y0AAABAB": 0.08,
-                "0208020Y0AAAEAE": 0.08,
-                "0208020Y0AAADAD": 0.06,
-                "0208020Y0AAACAC": 0.06,
-            },
+                "ratios": {
+                    "0208020Z0AAAAAA": 0.08,
+                    "0208020Z0AAABAB": 0.08,
+                    "0208020X0AAABAB": 0.08,
+                    "0208020X0AAACAC": 0.08,
+                    "0208020X0AAAAAA": 0.08,
+                    "0208020AAAAAAAA": 0.08,
+                    "0208020AAAAABAB": 0.08,
+                    "0208020AAAAACAC": 0.08,
+                    "0208020Y0AAAAAA": 0.08,
+                    "0208020Y0AAABAB": 0.08,
+                    "0208020Y0AAAEAE": 0.08,
+                    "0208020Y0AAADAD": 0.06,
+                    "0208020Y0AAACAC": 0.06,
+                },
             },
         },
     ),
     doac_dose_calculated=patients.categorised_as(
-        {"0": "DEFAULT",
-        "A2.5": "doac = '0208020Z0AAAAAA'",
-        "A5": "doac = '0208020Z0AAABAB'",
-        "D110": "doac = '0208020X0AAABAB'",
-        "D150": "doac = '0208020X0AAACAC'",
-        "D75": "doac = '0208020X0AAAAAA'",
-        "E15": "doac = '0208020AAAAAAAA'",
-        "E30": "doac = '0208020AAAAABAB'",
-        "E60": "doac = '0208020AAAAACAC'",
-        "R10": "doac = '0208020Y0AAAAAA'",
-        "R15": "doac = '0208020Y0AAABAB'",
-        "R15/20 titration": "doac = '0208020Y0AAAEAE'",
-        "R2.5": "doac = '0208020Y0AAADAD'",
-        "R20": "doac = '0208020Y0AAACAC'",
+        {
+            "0": "DEFAULT",
+            "A2.5": "doac = '0208020Z0AAAAAA'",
+            "A5": "doac = '0208020Z0AAABAB'",
+            "D110": "doac = '0208020X0AAABAB'",
+            "D150": "doac = '0208020X0AAACAC'",
+            "D75": "doac = '0208020X0AAAAAA'",
+            "E15": "doac = '0208020AAAAAAAA'",
+            "E30": "doac = '0208020AAAAABAB'",
+            "E60": "doac = '0208020AAAAACAC'",
+            "R10": "doac = '0208020Y0AAAAAA'",
+            "R15": "doac = '0208020Y0AAABAB'",
+            "R15/20 titration": "doac = '0208020Y0AAAEAE'",
+            "R2.5": "doac = '0208020Y0AAADAD'",
+            "R20": "doac = '0208020Y0AAACAC'",
         },
         return_expectations={
-         "category": {"ratios": {"0": 0.02, "A2.5": 0.07, "A5": 0.07, "D110": 0.08, "D150": 0.08, "D75": 0.08, "E15": 0.08, "E30": 0.08, "E60": 0.08, "R10": 0.08, "R15": 0.08, "R15/20 titration": 0.08, "R2.5": 0.06, "R20": 0.06,}},
-        "incidence": 0.2,
+            "category": {
+                "ratios": {
+                    "0": 0.02,
+                    "A2.5": 0.07,
+                    "A5": 0.07,
+                    "D110": 0.08,
+                    "D150": 0.08,
+                    "D75": 0.08,
+                    "E15": 0.08,
+                    "E30": 0.08,
+                    "E60": 0.08,
+                    "R10": 0.08,
+                    "R15": 0.08,
+                    "R15/20 titration": 0.08,
+                    "R2.5": 0.06,
+                    "R20": 0.06,
+                }
+            },
+            "incidence": 0.2,
         },
     ),
-        
     # With these clinical events
     egfr_recorded=patients.with_these_clinical_events(
         egfr_codes,
         find_last_match_in_period=True,
         between=["index_date - 12 months", "index_date"],
         returning="binary_flag",
-        return_expectations = {
-            "incidence": 0.2,},
+        return_expectations={
+            "incidence": 0.2,
+        },
     ),
     crcl_recorded=patients.with_these_clinical_events(
         crcl_codes,
         find_last_match_in_period=True,
         between=["index_date - 12 months", "index_date"],
         returning="binary_flag",
-        return_expectations = {
-        "incidence": 0.2,},
+        return_expectations={
+            "incidence": 0.2,
+        },
+    ),
+    crcl_recorded_code=patients.with_these_clinical_events(
+        crcl_codes,
+        find_last_match_in_period=True,
+        between=["index_date - 12 months", "index_date"],
+        returning="code",
+        return_expectations={"category": {"ratios": {"0208020Z0AAAAAA": 1}}},
     ),
     serumcreatinine_recorded=patients.with_these_clinical_events(
         creatinine_codes,
         find_last_match_in_period=True,
         between=["index_date - 12 months", "index_date"],
         returning="binary_flag",
-        return_expectations = {
-        "incidence": 0.2,},
+        return_expectations={
+            "incidence": 0.2,
+        },
     ),
     contra_indications=patients.with_these_clinical_events(
         contra_codes,
         find_last_match_in_period=True,
         between=["index_date - 12 months", "index_date"],
         returning="binary_flag",
-        return_expectations = {
-        "incidence": 0.05,},
+        return_expectations={
+            "incidence": 0.05,
+        },
     ),
     weight_recorded=patients.with_these_clinical_events(
         weight_codes,
         find_last_match_in_period=True,
         between=["index_date - 12 months", "index_date"],
         returning="binary_flag",
-        return_expectations = {
-        "incidence": 0.2,},
+        return_expectations={
+            "incidence": 0.2,
+        },
     ),
     atrial_fib=patients.with_these_clinical_events(
         af_codes,
         on_or_before="last_day_of_month(index_date)",
         returning="binary_flag",
-        return_expectations={"incidence": 0.18,},
+        return_expectations={
+            "incidence": 0.18,
+        },
     ),
-    
     # BMI, weight and height
     bmi=patients.most_recent_bmi(
         between=["index_date - 12 months", "index_date"],
@@ -163,7 +201,8 @@ study = StudyDefinition(
         return_expectations={
             "date": {"earliest": "2021-01-01", "latest": "2021-12-01"},
             "float": {"distribution": "normal", "mean": 28, "stddev": 8},
-            "incidence": 0.80,}
+            "incidence": 0.80,
+        },
     ),
     crcl=patients.with_these_clinical_events(
         crcl_codes,
@@ -172,7 +211,8 @@ study = StudyDefinition(
         returning="numeric_value",
         return_expectations={
             "float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
-            "incidence": 0.95,},
+            "incidence": 0.95,
+        },
     ),
     crcl_comparator=patients.comparator_from(
         "crcl",
@@ -206,7 +246,7 @@ study = StudyDefinition(
                 }
             },
         },
-    ),               
+    ),
     serumcreatinine=patients.with_these_clinical_events(
         creatinine_codes,
         find_last_match_in_period=True,
@@ -214,7 +254,8 @@ study = StudyDefinition(
         returning="numeric_value",
         return_expectations={
             "float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
-            "incidence": 0.95,},
+            "incidence": 0.95,
+        },
     ),
     serumcreatinine_comparator=patients.comparator_from(
         "serumcreatinine",
@@ -248,7 +289,7 @@ study = StudyDefinition(
                 }
             },
         },
-    ),               
+    ),
     weight=patients.with_these_clinical_events(
         weight_codes,
         find_last_match_in_period=True,
@@ -256,7 +297,8 @@ study = StudyDefinition(
         returning="numeric_value",
         return_expectations={
             "float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
-            "incidence": 0.95,},
+            "incidence": 0.95,
+        },
     ),
     weight_comparator=patients.comparator_from(
         "weight",
@@ -290,7 +332,7 @@ study = StudyDefinition(
                 }
             },
         },
-    ),               
+    ),
     height=patients.with_these_clinical_events(
         height_codes,
         find_last_match_in_period=True,
@@ -301,9 +343,9 @@ study = StudyDefinition(
         return_expectations={
             "float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
             "date": {"earliest": "2021-01-01", "latest": "2021-12-01"},
-            "incidence": 0.95,},
+            "incidence": 0.95,
+        },
     ),
-
     # Demographic information
     age=patients.age_as_of(
         "index_date",
@@ -342,17 +384,18 @@ study = StudyDefinition(
     sex=patients.sex(
         return_expectations={
             "category": {"ratios": {"M": 0.49, "F": 0.51}},
-            "incidence": 1},
+            "incidence": 1,
+        },
     ),
     carer=patients.with_these_clinical_events(
         carer,
         on_or_before="last_day_of_month(index_date)",
-        returning = "binary_flag",
-        find_last_match_in_period = True,
-        return_expectations = {
-            "incidence": 0.2,}
+        returning="binary_flag",
+        find_last_match_in_period=True,
+        return_expectations={
+            "incidence": 0.2,
+        },
     ),
-
     # Organisation
     region=patients.registered_practice_as_of(
         "index_date",
@@ -360,49 +403,40 @@ study = StudyDefinition(
         return_expectations={
             "rate": "universal",
             "category": {
-            "ratios": {
-                "East of England": 0.1,
-                "London": 0.1,
-                "Midlands": 0.1,
-                "North East and Yorkshire": 0.2,
-                "North West": 0.2,
-                "South East": 0.1,
-                "South West": 0.2,
-            },
+                "ratios": {
+                    "East of England": 0.1,
+                    "London": 0.1,
+                    "Midlands": 0.1,
+                    "North East and Yorkshire": 0.2,
+                    "North West": 0.2,
+                    "South East": 0.1,
+                    "South West": 0.2,
+                },
             },
         },
     ),
-
-
-
-
-
 )
 
 
 measures = [
-    
     Measure(
         id="doacs_by_region",
         numerator="on_doac",
         denominator="population",
         group_by=["region"],
     ),
-    
     Measure(
         id="doacs_by_sex",
         numerator="on_doac",
         denominator="population",
-        group_by=["sex"]
+        group_by=["sex"],
     ),
-
     Measure(
         id="doacs_by_age_band",
         numerator="on_doac",
         denominator="population",
-        group_by=["age_band"]
+        group_by=["age_band"],
     ),
-
     Measure(
         id="doacs_by_sex_and_age",
         numerator="on_doac",
@@ -410,69 +444,64 @@ measures = [
         group_by=["sex", "age"],
         small_number_suppression=True,
     ),
-
     Measure(
         id="doacs_by_carer",
         numerator="carer",
         denominator="population",
-        group_by=["on_doac"]
+        group_by=["on_doac"],
     ),
-
     Measure(
         id="doacs_with_weight_recorded",
         numerator="weight_recorded",
         denominator="population",
-        group_by=["on_doac"]
+        group_by=["on_doac"],
     ),
-
     Measure(
         id="doacs_with_egfr_recorded",
         numerator="egfr_recorded",
         denominator="population",
-        group_by=["on_doac"]
+        group_by=["on_doac"],
     ),
-
     Measure(
         id="doacs_with_crcl_recorded",
         numerator="crcl_recorded",
         denominator="population",
-        group_by=["on_doac"]
+        group_by=["on_doac"],
     ),
-
+    Measure(
+        id="doacs_with_crcl_recorded_code",
+        numerator="crcl_recorded",
+        denominator="population",
+        group_by=["on_doac", "crcl_recorded_code"],
+    ),
     Measure(
         id="doacs_with_serumcreatinine_recorded",
         numerator="serumcreatinine_recorded",
         denominator="population",
-        group_by=["on_doac"]
+        group_by=["on_doac"],
     ),
-
     Measure(
         id="doacs_with_serumcreatinine_and_crcl_recorded",
         numerator="crcl_recorded",
         denominator="serumcreatinine_recorded",
-        group_by=["on_doac"]
+        group_by=["on_doac"],
     ),
-
     Measure(
         id="doacs_with_af_recorded",
         numerator="atrial_fib",
         denominator="population",
-        group_by=["on_doac"]
+        group_by=["on_doac"],
     ),
-    
     Measure(
         id="doacs_with_af_and_crcl_recorded",
         numerator="crcl_recorded",
         denominator="atrial_fib",
-        group_by=["on_doac"]
+        group_by=["on_doac"],
     ),
-    
     Measure(
         id="doacs_dose_match",
         numerator="dose_match",
         denominator="af_&_crcl",
-        group_by=["on_doac"]
+        group_by=["on_doac"],
     ),
-    
 ]
-
