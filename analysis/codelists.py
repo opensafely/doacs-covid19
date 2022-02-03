@@ -197,6 +197,12 @@ creatinine_codes = codelist(
     system="snomed",
 )
 
+# Serum creatinine measure
+creatinine_measure = codelist(
+    ["16718100"],
+    system="snomed",
+)
+
 # eGFR
 egfr_codes = codelist(
     ["1011481000000100", 
@@ -231,6 +237,12 @@ crcl_codes = codelist(
 "442723000", 
 "784580008", 
 "968191000000100"],
+    system="snomed",
+)
+
+# Creatinine clearance measure
+crcl_measure = codelist(
+    ["16718100"],
     system="snomed",
 )
 
@@ -452,9 +464,15 @@ contra_codes = codelist(
     system="snomed",
 )
 
-# Weight
+# Weight all
 weight_codes = codelist(
     ["27113001", "162763007"], 
+    system="snomed",
+)
+
+# Weight measures
+weight_measures = codelist(
+    ["72652700", "27210200"], 
     system="snomed",
 )
 
