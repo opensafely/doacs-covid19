@@ -25,25 +25,25 @@ af_codes = codelist_from_csv(
 
 # serum creatinine
 creatinine_codes = codelist_from_csv(
-    "user-RachelS99-doac-creatinine-level-corrected.csv",
+    "codelists/user-RachelS99-doac-creatinine-level-corrected.csv",
     system="snomed",
 )
 
 # egfr
 egfr_codes = codelist_from_csv(
-    "user-RachelS99-doac-estimated-glomerular-filtration-rate.csv",
+    "codelists/user-RachelS99-doac-estimated-glomerular-filtration-rate.csv",
     system="snomed",
 )
 
 # creatinine clearance test
 crcl_codes = codelist_from_csv(
-    "user-RachelS99-doac-creatinine-clearance",
+    "codelists/user-RachelS99-doac-creatinine-clearance.csv",
     system="snomed",
 )
 
 # certain p-gp inhibitors ciclosporin 80906007, dronedarone 443310000, erthromycin 30427009, ketoconazole 40232005
 pgpi_codes = codelist_from_csv(
-    "user-RachelS99-doac-certain-p-gp-inhibitors",
+    "codelists/user-RachelS99-doac-certain-p-gp-inhibitors.csv",
     system="snomed",
 )
 
@@ -55,7 +55,7 @@ verapamil_codes = codelist(
 
 # gastritus, esophagitus, gastroesophageal refulx or increased risk of bleeding
 contra_codes = codelist_from_csv(
-    "user-RachelS99-doac-contraindications",
+    "codelists/user-RachelS99-doac-contraindications.csv",
     system="snomed",
 )
 
