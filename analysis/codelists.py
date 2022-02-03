@@ -470,7 +470,7 @@ weight_codes = codelist(
     system="snomed",
 )
 
-# Weight measures
+# Weight measure
 weight_measures = codelist(
     ["72652700", "27210200"], 
     system="snomed",
