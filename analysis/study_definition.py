@@ -142,7 +142,7 @@ study = StudyDefinition(
         },
     ),
     crcl_recorded=patients.with_these_clinical_events(
-        crcl_measure,
+        crcl_codes,
         find_last_match_in_period=True,
         between=["index_date - 12 months", "index_date"],
         returning="binary_flag",
@@ -158,7 +158,7 @@ study = StudyDefinition(
         return_expectations={"category": {"ratios": {"0208020Z0AAAAAA": 1}}},
     ),
     serumcreatinine_recorded=patients.with_these_clinical_events(
-        creatinine_measure,
+        creatinine_codes,
         find_last_match_in_period=True,
         between=["index_date - 12 months", "index_date"],
         returning="binary_flag",
@@ -176,7 +176,7 @@ study = StudyDefinition(
         },
     ),
     weight_recorded=patients.with_these_clinical_events(
-        weight_measure,
+        weight_codes,
         find_last_match_in_period=True,
         between=["index_date - 12 months", "index_date"],
         returning="binary_flag",
@@ -205,7 +205,7 @@ study = StudyDefinition(
         },
     ),
     crcl=patients.with_these_clinical_events(
-        crcl_measure,
+        crcl_codes,
         find_last_match_in_period=True,
         between=["index_date - 12 months", "index_date"],
         returning="numeric_value",
@@ -248,7 +248,7 @@ study = StudyDefinition(
         },
     ),
     serumcreatinine=patients.with_these_clinical_events(
-        creatinine_measure,
+        creatinine_codes,
         find_last_match_in_period=True,
         between=["index_date - 12 months", "index_date"],
         returning="numeric_value",
@@ -291,7 +291,7 @@ study = StudyDefinition(
         },
     ),
     weight=patients.with_these_clinical_events(
-        weight_measure,
+        weight_codes,
         find_last_match_in_period=True,
         on_or_before="last_day_of_month(index_date)",
         returning="numeric_value",
