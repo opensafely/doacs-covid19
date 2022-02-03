@@ -464,14 +464,14 @@ contra_codes = codelist(
     system="snomed",
 )
 
-# Weight all
+# Weight
 weight_codes = codelist(
     ["27113001", "162763007"], 
     system="snomed",
 )
 
 # Weight measure
-weight_measures = codelist(
+weight_measure = codelist(
     ["72652700", "27210200"], 
     system="snomed",
 )
