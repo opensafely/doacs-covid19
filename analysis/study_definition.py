@@ -491,10 +491,4 @@ measures = [
         denominator="af_&_crcl",
         group_by=["on_doac"],
     ),
-    Measure(
-        id="code_check",
-        numerator="crcl_recorded",
-        denominator="population",
-        group_by=["on_doac", "apixaban", "rivaroxaban", "edoxaban", "dabigatran110", "dabigatran150", "dose_match", "af_&_crcl"],
-    ),
 ]
