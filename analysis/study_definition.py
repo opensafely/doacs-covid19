@@ -485,10 +485,10 @@ measures = [
         denominator="atrial_fib",
         group_by=["on_doac"],
     ),
-    Measure(
-        id="doacs_dose_match",
-        numerator="dose_match",
-        denominator="af_&_crcl",
-        group_by=["on_doac"],
-    ),
+    #Measure(
+        #id="doacs_dose_match",
+        #numerator="dose_match",
+        #denominator="af_&_crcl",
+        #group_by=["on_doac"],
+    #),
 ]
