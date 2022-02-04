@@ -48,12 +48,12 @@ for file in os.listdir(OUTPUT_DIR):
        
         #with af & crcl recorded & exclusions
         afcrcl_conditions = [
-            ((df["atrial_fib"] == 1) & (df["crcl_recorded"] ==1)),
-        ((df["atrial_fib"] == 0)),
-        ((df["crcl_recorded"] == 0)),
-        (df['crcl_exclude'] == 0),
-        (df['serumcreatininecreatinine_exclude'] == 0),
-        (df['weight_exclude'] == 0)
+            ((df["atrial_fib"] == '1') & (df["crcl_recorded"] =='1')),
+        ((df["atrial_fib"] == '0')),
+        ((df["crcl_recorded"] == '0')),
+        (df['crcl_exclude'] == '0'),
+        (df['serumcreatininecreatinine_exclude'] == '0'),
+        (df['weight_exclude'] == '0')
         ]
 
         afcrcl_values = ['1', '0', '0', '0', '0', '0']
