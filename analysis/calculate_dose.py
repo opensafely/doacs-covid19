@@ -23,7 +23,7 @@ OUTPUT_DIR = "output"
 
 for file in os.listdir(OUTPUT_DIR):
     if match_input_files(file):
-        df = pd.read_csv(os.path.join(OUTPUT_DIR, file))
+        df = pd.read_csv(os.path.join(OUTPUT_DIR, file), dtype={'weight': 'float64', 'crcl': 'float64', 'serum_creatinine': 'float64'})
 
         date = get_date_input_file(file)
         # e.g date='2020-01-01'
