@@ -150,13 +150,6 @@ study = StudyDefinition(
             "incidence": 0.2,
         },
     ),
-    crcl_recorded_code=patients.with_these_clinical_events(
-        crcl_codes,
-        find_last_match_in_period=True,
-        between=["index_date - 12 months", "index_date"],
-        returning="code",
-        return_expectations={"category": {"ratios": {"0208020Z0AAAAAA": 1}}},
-    ),
     serumcreatinine_recorded=patients.with_these_clinical_events(
         creatinine_codes,
         find_last_match_in_period=True,
@@ -469,12 +462,6 @@ measures = [
         group_by=["on_doac"],
     ),
     Measure(
-        id="doacs_with_crcl_recorded_code",
-        numerator="crcl_recorded",
-        denominator="population",
-        group_by=["on_doac", "crcl_recorded_code"],
-    ),
-    Measure(
         id="doacs_with_serumcreatinine_recorded",
         numerator="serumcreatinine_recorded",
         denominator="population",
@@ -503,5 +490,11 @@ measures = [
         numerator="dose_match",
         denominator="af_&_crcl",
         group_by=["on_doac"],
+    ),
+    Measure(
+        id="code_check",
+        numerator="crcl_recorded",
+        denominator="population",
+        group_by=["on_doac", "apixaban", "rivaroxaban", "edoxaban", "dabigatran110", "dabigatran150", "dose_match", "af_&_crcl"],
     ),
 ]
