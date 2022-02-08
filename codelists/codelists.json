@@ -61,16 +61,16 @@
       "sha": "40a413469cafe7c85dd3d1c5b887642550e27aef"
     },
     "user-RachelS99-doac-creatinine-clearance.csv": {
-      "id": "user/RachelS99/doac-creatinine-clearance/320c9fd7",
-      "url": "https://codelists.opensafely.org/codelist/user/RachelS99/doac-creatinine-clearance/320c9fd7/",
-      "downloaded_at": "2022-01-26 13:43:19.218673Z",
-      "sha": "b85f4705d7c70dc1fd0757f6bafc2755357c8b86"
+      "id": "user/RachelS99/doac-creatinine-clearance/26d991b9",
+      "url": "https://codelists.opensafely.org/codelist/user/RachelS99/doac-creatinine-clearance/26d991b9/",
+      "downloaded_at": "2022-02-08 14:37:38.746684Z",
+      "sha": "5c22dae733185f81c5331f2efbdd0cecc2661778"
     },
     "user-RachelS99-doac-creatinine-level-corrected.csv": {
-      "id": "user/RachelS99/doac-creatinine-level-corrected/230178eb",
-      "url": "https://codelists.opensafely.org/codelist/user/RachelS99/doac-creatinine-level-corrected/230178eb/",
-      "downloaded_at": "2022-01-28 11:04:10.483022Z",
-      "sha": "7590aae35815bbab12bb69c29316cf1ab750847a"
+      "id": "user/RachelS99/doac-creatinine-level-corrected/0dca1e84",
+      "url": "https://codelists.opensafely.org/codelist/user/RachelS99/doac-creatinine-level-corrected/0dca1e84/",
+      "downloaded_at": "2022-02-08 14:37:39.139662Z",
+      "sha": "046fdd7c5ddc5b317e51575bf73daed0af9e4099"
     },
     "user-RachelS99-doac-estimated-glomerular-filtration-rate.csv": {
       "id": "user/RachelS99/doac-estimated-glomerular-filtration-rate/02a07963",
