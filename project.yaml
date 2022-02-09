@@ -1,10 +1,9 @@
-version: '3.0'
+version: "3.0"
 
 expectations:
   population_size: 10000
 
 actions:
-
   generate_study_population_1:
     run: cohortextractor:latest generate_cohort --study-definition study_definition --index-date-range "2018-01-01 to 2019-12-01 by month" --output-dir=output --output-format=csv
     outputs:
@@ -25,24 +24,24 @@ actions:
         cohort: output/inpu*.csv
 
   #generate_study_population_ethnicity:
-    #run: cohortextractor:latest generate_cohort --study-definition study_definition_ethnicity --output-dir=output --output-format=csv
-    #outputs:
-      #highly_sensitive:
-        #cohort: output/input_ethnicity.csv
+  #run: cohortextractor:latest generate_cohort --study-definition study_definition_ethnicity --output-dir=output --output-format=csv
+  #outputs:
+  #highly_sensitive:
+  #cohort: output/input_ethnicity.csv
 
   #join_ethnicity:
-    #run: python:latest python analysis/join_ethnicity.py
-    #needs: [generate_study_population, generate_study_population_ethnicity]
-    #outputs:
-      #highly_sensitive:
-        #cohort: output/input*.csv
+  #run: python:latest python analysis/join_ethnicity.py
+  #needs: [generate_study_population, generate_study_population_ethnicity]
+  #outputs:
+  #highly_sensitive:
+  #cohort: output/input*.csv
 
   generate_measures:
     run: cohortextractor:latest generate_measures --study-definition study_definition --output-dir=output
     needs: [generate_dose]
     outputs:
-        moderately_sensitive:
-          measure_csv: output/measure_*.csv
+      moderately_sensitive:
+        measure_csv: output/measure_*_rate.csv
 
   generate_notebook:
     run: jupyter:latest jupyter nbconvert /workspace/analysis/report.ipynb --execute --to html --template basic --output-dir=/workspace/output --ExecutePreprocessor.timeout=86400 --no-input
@@ -50,8 +49,3 @@ actions:
     outputs:
       moderately_sensitive:
         notebook: output/report.html
-
-
-  
-
-  
