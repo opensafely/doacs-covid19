@@ -413,6 +413,18 @@ study = StudyDefinition(
 
 measures = [
     Measure(
+        id="doac_by_code_rate",
+        numerator="on_doac",
+        denominator="population",
+        group_by="doac",
+    ),
+    Measure(
+        id="doac_by_dose_rate",
+        numerator="on_doac",
+        denominator="population",
+        group_by="doac_dose_calculated",
+    ),
+    Measure(
         id="doacs_by_region_rate",
         numerator="on_doac",
         denominator="population",
