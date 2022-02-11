@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np
 import os
 import re
-
+import json
+from collections import Counter
 
 def match_input_files(file: str) -> bool:
     """Checks if file name has format outputted by cohort extractor"""
@@ -30,10 +31,21 @@ for file in os.listdir(OUTPUT_DIR):
         date = get_date_input_file(file)
         # e.g date='2020-01-01'
 
+        # look at doac dose calculated column
+
+        unique_doac_dose = Counter(df["doac_dose_calculated"])
+        with open("output/doac_dose_calculated.json", "w") as fp:
+            json.dump(unique_doac_dose, fp)
+
         # calculate recommended dose for each doac based on recorded crcl
 
         # deal with null values in numeric value vars
         df["crcl"] = df["crcl"].fillna(-1)
+
+        unique_crcl = Counter(df["crcl"])
+        with open("output/crcl.json", "w") as fp:
+            json.dump(unique_crcl, fp)
+
 
         # apixaban
         apixaban_conditions = [

@@ -22,6 +22,8 @@ actions:
     outputs:
       highly_sensitive:
         cohort: output/inpu*.csv
+        numeric_values: output/crcl.json
+        doac_dose: output/doac_dose_calculated.json
 
   #generate_study_population_ethnicity:
   #run: cohortextractor:latest generate_cohort --study-definition study_definition_ethnicity --output-dir=output --output-format=csv
