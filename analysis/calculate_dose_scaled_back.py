@@ -21,6 +21,8 @@ def get_date_input_file(file: str) -> str:
         date = result = re.search(r"input_(.*)\.csv", file)
         return date.group(1)
 
+def round_5(x):
+    return int(5 * round(float(x)/5))
 
 OUTPUT_DIR = "output"
 
@@ -41,7 +43,9 @@ for file in os.listdir(OUTPUT_DIR):
             # deal with null values in numeric value vars
             df["crcl"] = df["crcl"].fillna(-1)
 
-            unique_crcl = Counter(df["crcl"])
+            
+            
+            unique_crcl = Counter(df["crcl"].apply(lambda x: round_5(x)))
             with open("output/crcl.json", "w") as fp:
                 json.dump(unique_crcl, fp)
 
