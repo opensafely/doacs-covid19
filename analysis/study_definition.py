@@ -70,7 +70,7 @@ study = StudyDefinition(
     doac=patients.with_these_medications(
         doac_codes,
         between=["index_date", "last_day_of_month(index_date)"],
-        returning="code",
+        returning="category",
         return_expectations={
             "rate": "universal",
             "category": {
