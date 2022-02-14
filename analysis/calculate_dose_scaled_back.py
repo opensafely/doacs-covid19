@@ -28,7 +28,7 @@ OUTPUT_DIR = "output"
 
 for file in os.listdir(OUTPUT_DIR):
     if match_input_files(file):
-        df = pd.read_csv(os.path.join(OUTPUT_DIR, file))
+        df = pd.read_feather(os.path.join(OUTPUT_DIR, file))
 
         date = get_date_input_file(file)
         # e.g date='2020-01-01'
@@ -119,4 +119,4 @@ for file in os.listdir(OUTPUT_DIR):
             df["af_&_crcl"] = np.select(afcrcl_conditions, afcrcl_values)
 
             # df.to_csv(f'output/df_with_calculation_{date}.csv') # this will be a new file
-            df.to_csv(os.path.join(OUTPUT_DIR, file))  # this will overwrite
+            df.to_feather(os.path.join(OUTPUT_DIR, file))  # this will overwrite
