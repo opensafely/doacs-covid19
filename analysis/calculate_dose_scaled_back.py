@@ -93,7 +93,7 @@ for file in os.listdir(OUTPUT_DIR):
         dabigatran_values = ["nr", "D110", "D150"]
 
         df["dabigatran"] = np.select(dabigatran_conditions, dabigatran_values)
-        print(df["doac_dose_calculated"])
+       
         # now need to check if on correct dose!
         conditions = [
             (df["doac_dose_calculated"] == df["apixaban"]),
