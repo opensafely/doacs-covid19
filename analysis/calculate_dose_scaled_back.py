@@ -7,7 +7,7 @@ from collections import Counter
 
 def match_input_files(file: str) -> bool:
     """Checks if file name has format outputted by cohort extractor"""
-    pattern = r"^input_20\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])\.csv"
+    pattern = r"^input_20\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])\.feather"
     return True if re.match(pattern, file) else False
 
 
@@ -18,7 +18,7 @@ def get_date_input_file(file: str) -> str:
         raise Exception("Not valid input file format")
 
     else:
-        date = result = re.search(r"input_(.*)\.csv", file)
+        date = result = re.search(r"input_(.*)\.feather", file)
         return date.group(1)
 
 def round_5(x):
