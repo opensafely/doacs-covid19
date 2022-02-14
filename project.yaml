@@ -22,6 +22,7 @@ actions:
     outputs:
       highly_sensitive:
         cohort: output/inpu*.csv
+      moderately_sensitive:
         numeric_values: output/crcl.json
         doac_dose: output/doac_dose_calculated.json
 
