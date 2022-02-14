@@ -102,7 +102,7 @@ for file in os.listdir(OUTPUT_DIR):
                 (df["doac_dose_calculated"] == df["dabigatran"]),
             ]
 
-            values = ["1", "1", "1", "1"]
+            values = [1, 1, 1, 1]
 
             df["dose_match"] = np.select(conditions, values)
 
@@ -114,7 +114,7 @@ for file in os.listdir(OUTPUT_DIR):
                 (df["crcl_exclude"] == 0),
             ]
 
-            afcrcl_values = ["1", "0", "0", "0"]
+            afcrcl_values = [1, 0, 0, 0]
 
             df["af_&_crcl"] = np.select(afcrcl_conditions, afcrcl_values)
 
