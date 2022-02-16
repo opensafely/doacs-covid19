@@ -48,3 +48,10 @@ actions:
     outputs:
       moderately_sensitive:
         notebook: output/report.html
+
+  generate_dose_match:
+    run: python:latest python analysis/dose_match.py
+    needs: [generate_measures]
+    outputs:
+      moderately_sensitive:
+        figure: output/dose_match.png
