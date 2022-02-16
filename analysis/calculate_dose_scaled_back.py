@@ -34,20 +34,12 @@ for file in os.listdir(OUTPUT_DIR):
         # e.g date='2020-01-01'
         if date == "2020-01-01":
 
-            unique_doac_dose = Counter(df["doac_dose_calculated"])
-            with open("output/doac_dose_calculated.json", "w") as fp:
-                json.dump(unique_doac_dose, fp)
+            
 
             # calculate recommended dose for each doac based on recorded crcl
 
             # deal with null values in numeric value vars
             df["crcl"] = df["crcl"].fillna(-1)
-
-            
-            
-            unique_crcl = Counter(df["crcl"].apply(lambda x: round_5(x)))
-            with open("output/crcl.json", "w") as fp:
-                json.dump(unique_crcl, fp)
 
 
             # apixaban
