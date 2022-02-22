@@ -22,6 +22,7 @@ actions:
     outputs:
       highly_sensitive:
         cohort: output/inpu*.feather
+  
   #generate_study_population_ethnicity:
   #run: cohortextractor:latest generate_cohort --study-definition study_definition_ethnicity --output-dir=output --output-format=csv
   #outputs:
@@ -50,9 +51,9 @@ actions:
         notebook: output/report.html
         plots: output/*.png
 
-  generate_dose_match:
-    run: python:latest python analysis/dose_match.py
-    needs: [generate_measures]
-    outputs:
-      moderately_sensitive:
-        figure: output/dose_match.png
+  #generate_dose_match:
+  #run: python:latest python analysis/dose_match.py
+  #needs: [generate_measures]
+  #outputs:
+  #moderately_sensitive:
+  #figure: output/dose_match.png
