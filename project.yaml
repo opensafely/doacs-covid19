@@ -38,7 +38,7 @@ actions:
   generate_measures:
     run: cohortextractor:latest generate_measures --study-definition study_definition --output-dir=output
     needs: [generate_dose]
-    outputs:
+    plots: output/*.png 
       moderately_sensitive:
         measure_csv: output/measure_*_rate.csv
 
