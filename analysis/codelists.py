@@ -23,6 +23,11 @@ af_codes = codelist_from_csv(
     system="snomed",
 )
 
+# mechanical prosthetic heart valve
+valve_codes = codelist(
+    ["174954002", "699347000", "33711000119109"],
+    system="snomed",
+
 # serum creatinine
 creatinine_codes = codelist_from_csv(
     "codelists/user-RachelS99-doac-creatinine-level-corrected.csv",

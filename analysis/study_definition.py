@@ -185,6 +185,14 @@ study = StudyDefinition(
             "incidence": 0.18,
         },
     ),
+    mechanical_valve=patients.with_these_clinical_events(
+        valve_codes,
+        on_or_before="last_day_of_month(index_date)",
+        returning="binary_flag",
+        return_expectations={
+            "incidence": 0.05,
+        },
+    ),
     # BMI, weight and height
     bmi=patients.most_recent_bmi(
         between=["index_date - 12 months", "index_date"],
@@ -488,6 +496,12 @@ measures = [
     Measure(
         id="doacs_with_af_recorded_rate",
         numerator="atrial_fib",
+        denominator="population",
+        group_by=["on_doac"],
+    ),
+    Measure(
+        id="doacs_with_mechanical_valve_rate",
+        numerator="mechanical_valve",
         denominator="population",
         group_by=["on_doac"],
     ),
