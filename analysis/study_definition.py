@@ -412,7 +412,7 @@ study = StudyDefinition(
 
 
 measures = [
-    Measure(
+        Measure(
         id="doac_by_code_rate",
         numerator="on_doac",
         denominator="population",
@@ -502,5 +502,11 @@ measures = [
         numerator="dose_match",
         denominator="af_&_crcl",
         group_by=["on_doac"],
+    ),
+    Measure(
+        id="doacs_new_rate",
+        numerator="dose_match",
+        denominator="af_&_crcl",
+        group_by=["on_doac", "doac_dose_calculated", "apixaban", "rivaroxaban", "edoxaban", "dabigatran"],s
     ),
 ]
