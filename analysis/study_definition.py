@@ -507,6 +507,6 @@ measures = [
         id="doacs_new_rate",
         numerator="dose_match",
         denominator="af_&_crcl",
-        group_by=["on_doac", "doac_dose_calculated", "apixaban", "rivaroxaban", "edoxaban", "dabigatran"],s
+        group_by=["on_doac", "doac_dose_calculated", "apixaban", "rivaroxaban", "edoxaban", "dabigatran"],
     ),
 ]
