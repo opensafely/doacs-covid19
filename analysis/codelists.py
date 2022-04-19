@@ -25,7 +25,7 @@ af_codes = codelist_from_csv(
 
 # mechanical prosthetic heart valve
 valve_codes = codelist(
-    ["174954002", "699347000", "33711000119109"],
+    ["213036006"],
     system="snomed",
 )
 
