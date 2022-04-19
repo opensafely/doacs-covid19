@@ -50,7 +50,7 @@ actions:
       moderately_sensitive:
         notebook: output/report.html
         plots: output/*.png
-        excel: output/*.csv
+        tables: output/*.csv
   #generate_dose_match:
   #run: python:latest python analysis/dose_match.py
   #needs: [generate_measures]
