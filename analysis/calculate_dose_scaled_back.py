@@ -57,7 +57,7 @@ for file in os.listdir(OUTPUT_DIR):
         rivaroxaban_conditions = [
             ((df["atrial_fib"] == 1) & (df["crcl"] < 15) & (df["crcl"] >= 0)),
             ((df["atrial_fib"] == 1) & (df["crcl"] >= 15) & (df["crcl"] <= 49)),
-            ((df["atrial_fib"] == 1) & (df["crcl"] > 50)),
+            ((df["atrial_fib"] == 1) & (df["crcl"] >= 50)),
         ]
 
         rivaroxaban_values = ["nr", "R15", "R20"]
@@ -109,6 +109,43 @@ for file in os.listdir(OUTPUT_DIR):
         afcrcl_values = [1, 0, 0, 0]
 
         df["af_&_crcl"] = np.select(afcrcl_conditions, afcrcl_values)
+
+
+        # dose summary over/under/match
+        summary_conditions = [
+            ((df["atrial_fib"] == 1) & (df["crcl"] < 15) & (df["crcl"] >= 0) & (df["doac_dose_calculated"] == "A2.5")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] < 15) & (df["crcl"] >= 0) & (df["doac_dose_calculated"] == "A5")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] >= 15) & (df["crcl"] <= 29) & (df["doac_dose_calculated"] == "A2.5")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] >= 15) & (df["crcl"] <= 29) & (df["doac_dose_calculated"] == "A5")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] >= 30) & (df["doac_dose_calculated"] == "A2.5")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] >= 30) & (df["doac_dose_calculated"] == "A5")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] < 15) & (df["crcl"] >= 0) & (df["doac_dose_calculated"] == "R15")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] < 15) & (df["crcl"] >= 0) & (df["doac_dose_calculated"] == "R20")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] >= 15) & (df["crcl"] <= 49) & (df["doac_dose_calculated"] == "R15")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] >= 15) & (df["crcl"] <= 49) & (df["doac_dose_calculated"] == "R20")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] >= 50) & (df["doac_dose_calculated"] == "R15")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] >= 50) & (df["doac_dose_calculated"] == "R20")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] < 15) & (df["crcl"] >= 0) & (df["doac_dose_calculated"] == "E30")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] < 15) & (df["crcl"] >= 0) & (df["doac_dose_calculated"] == "E60")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] >= 15) & (df["crcl"] <= 50) & (df["doac_dose_calculated"] == "E30")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] >= 15) & (df["crcl"] <= 50) & (df["doac_dose_calculated"] == "E60")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] > 50) & (df["doac_dose_calculated"] == "E30")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] > 50) & (df["doac_dose_calculated"] == "E60")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] < 30) & (df["crcl"] >= 0) & (df["doac_dose_calculated"] == "D110")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] < 30) & (df["crcl"] >= 0) & (df["doac_dose_calculated"] == "D150")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] >= 30) & (df["crcl"] <= 50) & (df["doac_dose_calculated"] == "D110")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] >= 30) & (df["crcl"] <= 50) & (df["doac_dose_calculated"] == "D150")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] >= 30) & (df["doac_dose_calculated"] == "D110")),
+            ((df["atrial_fib"] == 1) & (df["crcl"] >= 30) & (df["doac_dose_calculated"] == "D150")),
+            ((df["atrial_fib"] == 1) & (df["doac_dose_calculated"] == "D75")),
+            ((df["atrial_fib"] == 1) & (df["doac_dose_calculated"] == "E15")),
+            ((df["atrial_fib"] == 1) & (df["doac_dose_calculated"] == "R10")),
+            ((df["atrial_fib"] == 1) & (df["doac_dose_calculated"] == "R2.5")),
+        ]
+
+        summary_values = ["over", "over", "match", "over", "under", "match", "over", "over", "match", "over", "under", "match", "over", "over", "match", "over", "under", "match", "over", "over", "match", "over", "under", "match", "under", "under", "under", "under"]
+
+        df["dose_summary"] = np.select(summary_conditions, summary_values)
 
         # df.to_csv(f'output/df_with_calculation_{date}.csv') # this will be a new file
         df.to_feather(os.path.join(OUTPUT_DIR, file))  # this will overwrite
