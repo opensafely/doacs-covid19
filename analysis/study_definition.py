@@ -517,10 +517,4 @@ measures = [
         denominator="af_&_crcl",
         group_by=["on_doac"],
     ),
-    Measure(
-        id="dose_evaluation_rate",
-        numerator="on_doac",
-        denominator="af_&_crcl",
-        group_by=["dose_summary"],
-    ),
 ]
