@@ -23,6 +23,13 @@ actions:
       highly_sensitive:
         cohort: output/inpu*.feather
   
+  filter_population:
+    run: python:latest python analysis/filter_population.py
+    needs: [generate_dose]
+    outputs:
+      moderately_sensitive:
+        cohort: output/filtered/input*.feather
+  
   #generate_study_population_ethnicity:
   #run: cohortextractor:latest generate_cohort --study-definition study_definition_ethnicity --output-dir=output --output-format=csv
   #outputs:
@@ -37,20 +44,20 @@ actions:
   #cohort: output/input*.csv
 
   generate_measures:
-    run: cohortextractor:latest generate_measures --study-definition study_definition --output-dir=output
-    needs: [generate_dose]
+    run: cohortextractor:latest generate_measures --study-definition study_definition --output-dir=output/filtered
+    needs: [filter_population]
     outputs: 
       moderately_sensitive:
-        measure_csv: output/measure_*_rate.csv
+        measure_csv: output/filtered/measure_*_rate.csv
 
   generate_notebook:
-    run: jupyter:latest jupyter nbconvert /workspace/analysis/report.ipynb --execute --to html --template basic --output-dir=/workspace/output --ExecutePreprocessor.timeout=86400 --no-input
+    run: jupyter:latest jupyter nbconvert /workspace/analysis/report.ipynb --execute --to html --template basic --output-dir=/workspace/output/filtered --ExecutePreprocessor.timeout=86400 --no-input
     needs: [generate_measures]
     outputs:
       moderately_sensitive:
-        notebook: output/report.html
-        plots: output/*.png
-        tables: output/*.csv
+        notebook: output/filtered/report.html
+        plots: output/filtered/*.png
+        tables: output/filtered/*.csv
         
   #generate_dose_match:
   #run: python:latest python analysis/dose_match.py
