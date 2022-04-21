@@ -51,13 +51,13 @@ actions:
         measure_csv: output/filtered/measure_*_rate.csv
 
   generate_notebook:
-    run: jupyter:latest jupyter nbconvert /workspace/analysis/report.ipynb --execute --to html --template basic --output-dir=/workspace/output --ExecutePreprocessor.timeout=86400 --no-input
+    run: jupyter:latest jupyter nbconvert /workspace/analysis/report.ipynb --execute --to html --template basic --output-dir=/workspace/output/filtered --ExecutePreprocessor.timeout=86400 --no-input
     needs: [generate_measures]
     outputs:
       moderately_sensitive:
-        notebook: output/report.html
-        plots: output/*.png
-        tables: output/*.csv
+        notebook: output/filtered/report.html
+        plots: output/filtered/*.png
+        tables: output/filtered/*.csv
         
   #generate_dose_match:
   #run: python:latest python analysis/dose_match.py
