@@ -27,7 +27,7 @@ actions:
     run: python:latest python analysis/filter_population.py
     needs: [generate_dose]
     outputs:
-      moderately_sensitive:
+      highly_sensitive:
         cohort: output/filtered/input*.feather
   
   #generate_study_population_ethnicity:
