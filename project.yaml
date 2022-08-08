@@ -58,6 +58,13 @@ actions:
         notebook: output/filtered/report.html
         plots: output/filtered/*.png
         tables: output/filtered/*.csv
+
+  generate_charts:
+    run: jupyter:latest jupyter nbconvert /workspace/analysis/report.ipynb --execute --to html --template basic --output-dir=/workspace/output/filtered --ExecutePreprocessor.timeout=86400 --no-input
+    needs: [generate_measures]
+    outputs:
+      moderately_sensitive:
+        plots: output/filtered/*.png
         
   #generate_dose_match:
   #run: python:latest python analysis/dose_match.py
