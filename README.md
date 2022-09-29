@@ -1,5 +1,4 @@
-# Safety of direct-acting oral anticoagulant (DOAC) prescribing during the COVID-19
-pandemic paper
+# Safety of direct-acting oral anticoagulant (DOAC) prescribing during the COVID-19 pandemic paper
 
 This is the code and configuration for the paper, safety of direct-acting oral anticoagulant (DOAC) prescribing during the COVID-19
 pandemic paper released September 2022.
