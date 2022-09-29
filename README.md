@@ -1,7 +1,8 @@
-# doacs-covid19
+# Safety of direct-acting oral anticoagulant (DOAC) prescribing during the COVID-19
+pandemic paper
 
-This is the code and configuration for the Safety of direct-acting oral anticoagulant (DOAC) prescribing during the COVID-19
-pandemic paper - September 2022.
+This is the code and configuration for the paper, safety of direct-acting oral anticoagulant (DOAC) prescribing during the COVID-19
+pandemic paper released September 2022.
 
 You can run this project via [Gitpod](https://gitpod.io) in a web browser by clicking on this badge: [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/opensafely/doacs-covid19)
 
