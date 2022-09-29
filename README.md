@@ -3,8 +3,6 @@
 This is the code and configuration for the paper, safety of direct-acting oral anticoagulant (DOAC) prescribing during the COVID-19
 pandemic paper released September 2022.
 
-You can run this project via [Gitpod](https://gitpod.io) in a web browser by clicking on this badge: [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/opensafely/doacs-covid19)
-
 * The published peer-reviewed paper is available [here](https://www.prescqipp.info/media/6290/hot-topic-safety-of-doac-prescribing-during-covid19-26.pdf)
 * Raw model outputs, including charts, crosstabs, etc, are in `released_outputs/`
 * If you are interested in how we defined our variables, take a look at the [study definition](analysis/study_definition.py); this is written in `python`, but non-programmers should be able to understand what is going on there
