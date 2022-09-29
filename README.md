@@ -1,6 +1,8 @@
 # doacs-covid19
 
-This is the code and configuration for doacs-covid19.
+This is the code and configuration for Safety of direct-acting oral anticoagulant (DOAC) prescribing during the COVID-19
+pandemic
+September 2022
 
 You can run this project via [Gitpod](https://gitpod.io) in a web browser by clicking on this badge: [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/opensafely/doacs-covid19)
 
