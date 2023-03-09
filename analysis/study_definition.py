@@ -13,7 +13,7 @@ from codelists import *
 from datetime import date
 
 study = StudyDefinition(
-    index_date="2022-07-01",
+    index_date="2023-02-01",
     # Default expectations
     default_expectations={
         "date": {"earliest": "1970-01-01", "latest": "index_date"},
@@ -112,9 +112,9 @@ study = StudyDefinition(
         return_expectations={
             "category": {
                 "ratios": {
-                    "0": 0.02,
-                    "A2.5": 0.07,
-                    "A5": 0.07,
+                    "0": 0.00,
+                    "A2.5": 0.08,
+                    "A5": 0.08,
                     "D110": 0.08,
                     "D150": 0.08,
                     "D75": 0.08,
@@ -230,10 +230,10 @@ study = StudyDefinition(
                     "<=": 0.05,
                 }
             },
-            "incidence": 0.80,
+            "incidence": 0.10,
         },
     ),
-    crcl_exclude=patients.categorised_as(
+    crcl_include=patients.categorised_as(
         {
             "0": "DEFAULT",
             "1": """ (( NOT crcl_comparator = '>=' ) AND ( NOT crcl_comparator = '<=' ) AND ( NOT crcl_comparator = '~' ) AND ( NOT crcl_comparator='>') AND ( NOT crcl_comparator = '<' )) """,
@@ -242,8 +242,8 @@ study = StudyDefinition(
             "rate": "universal",
             "category": {
                 "ratios": {
-                    "0": 0.94,
-                    "1": 0.06,
+                    "0": 0.06,
+                    "1": 0.94,
                 }
             },
         },
@@ -276,7 +276,7 @@ study = StudyDefinition(
             "incidence": 0.80,
         },
     ),
-    serumcreatininecreatinine_exclude=patients.categorised_as(
+    serumcreatininecreatinine_include=patients.categorised_as(
         {
             "0": "DEFAULT",
             "1": """ (( NOT serumcreatinine_comparator = '>=' ) AND ( NOT serumcreatinine_comparator = '<=' ) AND ( NOT serumcreatinine_comparator = '~' ) AND ( NOT serumcreatinine_comparator='>') AND ( NOT serumcreatinine_comparator = '<' )) """,
@@ -319,7 +319,7 @@ study = StudyDefinition(
             "incidence": 0.80,
         },
     ),
-    weight_exclude=patients.categorised_as(
+    weight_include=patients.categorised_as(
         {
             "0": "DEFAULT",
             "1": """ (( NOT weight_comparator = '>=' ) AND ( NOT weight_comparator = '<=' ) AND ( NOT weight_comparator = '~' ) AND ( NOT weight_comparator='>') AND ( NOT weight_comparator = '<' )) """,
@@ -417,8 +417,6 @@ study = StudyDefinition(
         },
     ),
 )
-
-
 measures = [
         Measure(
         id="doac_by_code_rate",
@@ -494,7 +492,7 @@ measures = [
     ),
     Measure(
         id="doacs_with_af_recorded_rate",
-        numerator="atrial_fib",
+        numerator="nvaf",
         denominator="population",
         group_by=["on_doac"],
     ),
@@ -507,7 +505,7 @@ measures = [
     Measure(
         id="doacs_with_af_and_crcl_recorded_rate",
         numerator="crcl_recorded",
-        denominator="atrial_fib",
+        denominator="nvaf",
         group_by=["on_doac"],
     ),
     Measure(
@@ -521,5 +519,36 @@ measures = [
         numerator="af_&_crcl",
         denominator="on_doac",
         group_by=["dose_summary"],
+    ),
+    # New summary measures for data required to write paper
+    Measure(
+        id="doacs_summary_demographics_rate",
+        numerator="on_doac",
+        denominator="population",
+        group_by=["doac_dose_calculated", "sex", "age_band"],
+    ),
+    Measure(
+        id="doacs_summary_recordings_rate",
+        numerator="on_doac",
+        denominator="population",
+        group_by=["doac_dose_calculated", "weight_recorded", "egfr_recorded", "serumcreatinine_recorded", "crcl_recorded", "atrial_fib", "mechanical_valve"],
+    ),
+    Measure(
+        id="doacs_summary_dose_rate",
+        numerator="on_doac",
+        denominator="population",
+        group_by=["doac_dose_calculated", "dose_summary"],
+    ),
+    Measure(
+        id="doacs_summary_crcl_rate",
+        numerator="on_doac",
+        denominator="population",
+        group_by=["doac_dose_calculated", "crcl_grouped"],
+    ),
+    Measure(
+        id="doacs_summary_weight_rate",
+        numerator="on_doac",
+        denominator="population",
+        group_by=["doac_dose_calculated", "weight_grouped"],
     ),
 ]
