@@ -535,8 +535,8 @@ measures = [
     ),
     Measure(
         id="doacs_summary_dose_rate",
-        numerator="on_doac",
-        denominator="population",
+        numerator="af_&_crcl",
+        denominator="on_doac",
         group_by=["doac_dose_calculated", "dose_summary"],
     ),
     Measure(
