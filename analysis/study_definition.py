@@ -547,8 +547,8 @@ measures = [
     ),
     Measure(
         id="doacs_summary_weight_rate",
-        numerator="on_doac",
-        denominator="population",
-        group_by=["doac_dose_calculated", "weight_grouped"],
+        numerator="weight_recorded",
+        denominator="on_doac",
+        group_by=["doac_dose_calculated","weight_grouped"],
     ),
 ]
