@@ -104,11 +104,10 @@ for file in os.listdir(OUTPUT_DIR):
             ((df["atrial_fib"] == 0)),
             ((df["crcl_recorded"] == 0)),
             (df["crcl_include"] == 0),
-             (df["mechanical_valve"] == 1),
 
         ]
 
-        afcrcl_values = [1, 0, 0, 0, 0]
+        afcrcl_values = [1, 0, 0, 0]
 
         df["af_&_crcl"] = np.select(afcrcl_conditions, afcrcl_values)
 
@@ -153,12 +152,10 @@ for file in os.listdir(OUTPUT_DIR):
         # new crcl values grouped
         crcl_conditions = [
             ((df["crcl"] < 15) & (df["crcl"] >= 0)),
-            ((df["crcl"] >= 15) & (df["crcl"] <= 29)),
-            ((df["crcl"] >= 30) & (df["crcl"] <= 90)),
-            ((df["crcl"] > 90)),
+            ((df["crcl"] >= 15)),
         ]
 
-        crcl_values = ["<15mL/min", "15-29mL/min", "30-90mL/min", ">90mL/min"]
+        crcl_values = ["<15mL/min", ">15mL/min"]
 
         df["crcl_grouped"] = np.select(crcl_conditions, crcl_values)
 
@@ -173,17 +170,6 @@ for file in os.listdir(OUTPUT_DIR):
 
         df["weight_grouped"] = np.select(weight_conditions, weight_values)
 
-        # with non-valvular af
-        nvaf_conditions = [
-            ((df["atrial_fib"] == 1) & (df["mechanical_valve"] == 0)),
-            ((df["atrial_fib"] == 0)),
-            (df["mechanical_valve"] == 1),
-        ]
-
-        nvaf_values = [1, 0, 0]
-
-        df["nvaf"] = np.select(nvaf_conditions, nvaf_values)
-
-
+       
         # df.to_csv(f'output/df_with_calculation_{date}.csv') # this will be a new file
         df.to_feather(os.path.join(OUTPUT_DIR, file))  # this will overwrite

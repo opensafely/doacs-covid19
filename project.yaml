@@ -11,14 +11,21 @@ actions:
         cohort: output/input*.feather
 
   generate_study_population_2:
-    run: cohortextractor:latest generate_cohort --study-definition study_definition --index-date-range "2020-01-01 to 2023-02-01 by month" --output-dir=output --output-format=feather
+    run: cohortextractor:latest generate_cohort --study-definition study_definition --index-date-range "2020-01-01 to 2022-06-01 by month" --output-dir=output --output-format=feather
     outputs:
       highly_sensitive:
         cohort: output/input_*.feather
+  
+  generate_study_population_3:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition --index-date-range "2022-07-01 to 2023-02-01 by month" --output-dir=output --output-format=feather
+    outputs:
+      highly_sensitive:
+        cohort: output/inp*.feather
+
 
   generate_dose:
     run: python:latest python analysis/calculate_dose_scaled_back.py
-    needs: [generate_study_population_1, generate_study_population_2]
+    needs: [generate_study_population_1, generate_study_population_2, generate_study_population_3]
     outputs:
       highly_sensitive:
         cohort: output/inpu*.feather
@@ -30,19 +37,6 @@ actions:
       highly_sensitive:
         cohort: output/filtered/input*.feather
   
-  #generate_study_population_ethnicity:
-  #run: cohortextractor:latest generate_cohort --study-definition study_definition_ethnicity --output-dir=output --output-format=csv
-  #outputs:
-  #highly_sensitive:
-  #cohort: output/input_ethnicity.csv
-
-  #join_ethnicity:
-  #run: python:latest python analysis/join_ethnicity.py
-  #needs: [generate_study_population, generate_study_population_ethnicity]
-  #outputs:
-  #highly_sensitive:
-  #cohort: output/input*.csv
-
   generate_measures:
     run: cohortextractor:latest generate_measures --study-definition study_definition --output-dir=output/filtered
     needs: [filter_population]
@@ -58,12 +52,3 @@ actions:
         notebook: output/filtered/report.html
         plots: output/filtered/*.png
         tables: output/filtered/*.csv
-
-  
-   
-  #generate_dose_match:
-  #run: python:latest python analysis/dose_match.py
-  #needs: [generate_measures]
-  #outputs:
-  #moderately_sensitive:
-  #figure: output/dose_match.png
