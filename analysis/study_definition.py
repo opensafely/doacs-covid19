@@ -566,9 +566,9 @@ measures = [
     ),
     Measure(
         id="doacs_summary_af_&_crcl_rate",
-        numerator="atrial_fib",
-        denominator="on_doac",
-        group_by=["doac_dose_calculated", "af_&_crcl"],
+        numerator="on_doac",
+        denominator="population",
+        group_by=["doac_dose_calculated", "atrial_fib"],
         small_number_suppression=True,
     ),
 ]
