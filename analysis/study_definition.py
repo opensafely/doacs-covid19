@@ -498,8 +498,8 @@ measures = [
     ),
     Measure(
         id="doacs_with_af_and_crcl_recorded_rate",
-        numerator="crcl_recorded",
-        denominator="af_&_crcl",
+        numerator="af_&_crcl",
+        denominator="population",
         group_by=["on_doac"],
     ),
     Measure(
@@ -566,8 +566,8 @@ measures = [
     ),
     Measure(
         id="doacs_summary_af_&_crcl_rate",
-        numerator="on_doac",
-        denominator="population",
+        numerator="atrial_fib",
+        denominator="on_doac",
         group_by=["doac_dose_calculated", "af_&_crcl"],
         small_number_suppression=True,
     ),
