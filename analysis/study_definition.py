@@ -13,7 +13,7 @@ from codelists import *
 from datetime import date
 
 study = StudyDefinition(
-    index_date="2023-02-01",
+    index_date="2023-06-01",
     # Default expectations
     default_expectations={
         "date": {"earliest": "1970-01-01", "latest": "index_date"},
