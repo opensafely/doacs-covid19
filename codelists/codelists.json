@@ -2,79 +2,79 @@
   "files": {
     "opensafely-direct-acting-oral-anticoagulants-doac.csv": {
       "id": "opensafely/direct-acting-oral-anticoagulants-doac/2020-10-05",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/direct-acting-oral-anticoagulants-doac/2020-10-05/",
-      "downloaded_at": "2021-11-03 12:07:07.697655Z",
-      "sha": "50f69d9c0bcb0e58aadb76fb4749d33f74f66253"
+      "url": "https://www.opencodelists.org/codelist/opensafely/direct-acting-oral-anticoagulants-doac/2020-10-05/",
+      "downloaded_at": "2023-12-07 12:13:57.245601Z",
+      "sha": "a4d3390bdd43f911766a8dedf4107733563132ca"
     },
     "nhsd-primary-care-domain-refsets-afib_cod.csv": {
       "id": "nhsd-primary-care-domain-refsets/afib_cod/20200812",
-      "url": "https://codelists.opensafely.org/codelist/nhsd-primary-care-domain-refsets/afib_cod/20200812/",
+      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/afib_cod/20200812/",
       "downloaded_at": "2021-11-25 11:49:34.479021Z",
       "sha": "8fe8c8aca7558876d4371e2371a44eda511f9a21"
     },
     "primis-covid19-vacc-uptake-eth2001.csv": {
       "id": "primis-covid19-vacc-uptake/eth2001/v1",
-      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/eth2001/v1/",
-      "downloaded_at": "2021-11-08 11:55:29.810447Z",
-      "sha": "36e4eacba898e6ec72da8ff66e8c673bfd9aa8e4"
+      "url": "https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/eth2001/v1/",
+      "downloaded_at": "2023-12-07 12:13:59.719534Z",
+      "sha": "2ff9aea91a05f41fe911a885eee50d2494247d58"
     },
     "primis-covid19-vacc-uptake-non_eth2001.csv": {
       "id": "primis-covid19-vacc-uptake/non_eth2001/v1",
-      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/non_eth2001/v1/",
+      "url": "https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/non_eth2001/v1/",
       "downloaded_at": "2021-11-08 11:55:30.174617Z",
       "sha": "b8581424b9305f70148f1bbccc0d3e4703847df7"
     },
     "primis-covid19-vacc-uptake-eth_notgiptref.csv": {
       "id": "primis-covid19-vacc-uptake/eth_notgiptref/v1",
-      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/eth_notgiptref/v1/",
+      "url": "https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/eth_notgiptref/v1/",
       "downloaded_at": "2021-11-08 11:55:30.459053Z",
       "sha": "6245c85e4bd44c0c3aa573325cf55891efee45db"
     },
     "primis-covid19-vacc-uptake-eth_notstated.csv": {
       "id": "primis-covid19-vacc-uptake/eth_notstated/v1",
-      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/eth_notstated/v1/",
+      "url": "https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/eth_notstated/v1/",
       "downloaded_at": "2021-11-08 11:55:30.755540Z",
       "sha": "a8997e1807a07d8f56e34ba3d0b95ee0082fec82"
     },
     "primis-covid19-vacc-uptake-eth_norecord.csv": {
       "id": "primis-covid19-vacc-uptake/eth_norecord/v1",
-      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/eth_norecord/v1/",
+      "url": "https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/eth_norecord/v1/",
       "downloaded_at": "2021-11-08 11:55:31.065460Z",
       "sha": "ca003bb021a14e704a6e81c139536ef459673da4"
     },
     "primis-covid19-vacc-uptake-carer.csv": {
       "id": "primis-covid19-vacc-uptake/carer/v1",
-      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/carer/v1/",
+      "url": "https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/carer/v1/",
       "downloaded_at": "2021-11-08 17:53:01.910696Z",
       "sha": "e3526d8e7e1a3aaeeee29a3bb18c177243c218c6"
     },
     "user-RachelS99-doac-certain-p-gp-inhibitors.csv": {
       "id": "user/RachelS99/doac-certain-p-gp-inhibitors/4dced302",
-      "url": "https://codelists.opensafely.org/codelist/user/RachelS99/doac-certain-p-gp-inhibitors/4dced302/",
+      "url": "https://www.opencodelists.org/codelist/user/RachelS99/doac-certain-p-gp-inhibitors/4dced302/",
       "downloaded_at": "2022-01-26 13:43:18.259668Z",
       "sha": "0ae3b8bb249ff15b92b28e3e2cb59e0dbe7d9ded"
     },
     "user-RachelS99-doac-contraindications.csv": {
       "id": "user/RachelS99/doac-contraindications/7d3af976",
-      "url": "https://codelists.opensafely.org/codelist/user/RachelS99/doac-contraindications/7d3af976/",
+      "url": "https://www.opencodelists.org/codelist/user/RachelS99/doac-contraindications/7d3af976/",
       "downloaded_at": "2022-01-26 13:43:18.751205Z",
       "sha": "40a413469cafe7c85dd3d1c5b887642550e27aef"
     },
     "user-RachelS99-doac-creatinine-clearance.csv": {
-      "id": "user/RachelS99/doac-creatinine-clearance/26d991b9",
-      "url": "https://codelists.opensafely.org/codelist/user/RachelS99/doac-creatinine-clearance/26d991b9/",
-      "downloaded_at": "2022-02-08 14:37:38.746684Z",
-      "sha": "5c22dae733185f81c5331f2efbdd0cecc2661778"
+      "id": "user/RachelS99/doac-creatinine-clearance/7f4dc09f",
+      "url": "https://www.opencodelists.org/codelist/user/RachelS99/doac-creatinine-clearance/7f4dc09f/",
+      "downloaded_at": "2023-12-07 12:14:09.336290Z",
+      "sha": "ffa77ca2fe9e5048176dc42622b7db9f6183ba9a"
     },
     "user-RachelS99-doac-creatinine-level-corrected.csv": {
       "id": "user/RachelS99/doac-creatinine-level-corrected/0dca1e84",
-      "url": "https://codelists.opensafely.org/codelist/user/RachelS99/doac-creatinine-level-corrected/0dca1e84/",
+      "url": "https://www.opencodelists.org/codelist/user/RachelS99/doac-creatinine-level-corrected/0dca1e84/",
       "downloaded_at": "2022-02-08 14:37:39.139662Z",
       "sha": "046fdd7c5ddc5b317e51575bf73daed0af9e4099"
     },
     "user-RachelS99-doac-estimated-glomerular-filtration-rate.csv": {
       "id": "user/RachelS99/doac-estimated-glomerular-filtration-rate/02a07963",
-      "url": "https://codelists.opensafely.org/codelist/user/RachelS99/doac-estimated-glomerular-filtration-rate/02a07963/",
+      "url": "https://www.opencodelists.org/codelist/user/RachelS99/doac-estimated-glomerular-filtration-rate/02a07963/",
       "downloaded_at": "2022-01-26 13:43:20.138411Z",
       "sha": "12eef3128a558994da047f4efc01b5ec54475b4e"
     }

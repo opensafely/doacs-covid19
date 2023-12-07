@@ -1,8 +1,12 @@
 code,term
+1556501000000100,Estimated creatinine clearance calculated using actual body weight Cockcroft-Gault formula
+1556511000000103,Estimated creatinine clearance calculated using ideal body weight Cockcroft-Gault formula
+1556521000000109,Estimated creatinine clearance calculated using adjusted body weight Cockcroft-Gault formula
 167181009,Measurement of renal clearance of creatinine
-167182002,Creatinine clearance-glomerular filtration normal
-167183007,Creatinine clearance-glomerular filtration abnormal
+167182002,Creatinine clearance-glomerular filtration within reference range
+167183007,Creatinine clearance-glomerular filtration outside reference range
 395680003,Estimated creatine clearance
 442407001,Estimation of creatinine clearance by Cockcroft-Gault formula
 784580008,Estimation of creatinine clearance
+863930006,Creatinine clearance below reference range
 968191000000100,Estimated creatinine clearance using Cockcroft-Gault formula
