@@ -67,29 +67,67 @@ study = StudyDefinition(
             "incidence": 0.1,
         },
     ),
-    doac=patients.with_these_medications(
+    doac_code=patients.with_these_medications(
         doac_codes,
         between=["index_date", "last_day_of_month(index_date)"],
-        returning="category",
+        returning="code",
         return_expectations={
             "rate": "universal",
             "category": {
                 "ratios": {
-                    "0208020Z0AAAAAA": 0.08,
-                    "0208020Z0AAABAB": 0.08,
-                    "0208020X0AAABAB": 0.08,
-                    "0208020X0AAACAC": 0.08,
-                    "0208020X0AAAAAA": 0.08,
-                    "0208020AAAAAAAA": 0.08,
-                    "0208020AAAAABAB": 0.08,
-                    "0208020AAAAACAC": 0.08,
-                    "0208020Y0AAAAAA": 0.08,
-                    "0208020Y0AAABAB": 0.08,
-                    "0208020Y0AAAEAE": 0.08,
-                    "0208020Y0AAADAD": 0.06,
-                    "0208020Y0AAACAC": 0.06,
+                    "13504711000001102": 0.5,
+                    "13505411000001109": 0.5,
                 },
             },
+        },
+    ),
+    doac=patients.categorised_as(
+        {
+            "0": "DEFAULT",
+            "0208020X0BBAAAA": "doac_code = 13504711000001102",
+            "0208020X0BBABAB": "doac_code = 13505411000001109",
+            "0208020X0AAABAB": "doac_code = 13532811000001109",
+            "0208020X0AAAAAA": "doac_code = 13532911000001104",
+            "0208020Y0BBAAAA": "doac_code = 14237311000001106",
+            "0208020Y0AAAAAA": "doac_code = 14254711000001104",
+            "0208020X0BBACAC": "doac_code = 19465811000001104",
+            "0208020X0AAACAC": "doac_code = 19469811000001101",
+            "0208020Z0BBAAAA": "doac_code = 19506911000001105",
+            "0208020Y0BBABAB": "doac_code = 19840811000001107",
+            "0208020Y0BBACAC": "doac_code = 19841411000001101",
+            "0208020Y0AAABAB": "doac_code = 19842111000001101",
+            "0208020Y0AAACAC": "doac_code = 19842211000001107",
+            "0208020Z0BBABAB": "doac_code = 21677511000001105",
+            "0208020Y0BBADAD": "doac_code = 27160311000001106",
+            "0208020Y0AAADAD": "doac_code = 27810711000001104",
+            "0208020AABBAAAA": "doac_code = 29902111000001100",
+            "0208020AABBABAB": "doac_code = 29902411000001105",
+            "0208020AABBACAC": "doac_code = 29902711000001104",
+            "0208020AAAAAAAA": "doac_code = 29903211000001100",
+            "0208020AAAAABAB": "doac_code = 29903311000001108",
+            "0208020AAAAACAC": "doac_code = 29903411000001101",
+            "0208020Y0BBAEAE": "doac_code = 34793111000001102",
+            "0208020Y0AAAEAE": "doac_code = 34819111000001102",
+            "0208020Z0AAABAB": """doac_code = 40640311000001107 OR 
+            doac_code = 40705011000001102 OR 
+            doac_code = 40721611000001104 OR
+            doac_code = 40729311000001108 OR
+            doac_code = 703908001""",
+            "0208020Z0AAAAAA": """doac_code = 40655511000001108 OR
+             doac_code = 40704611000001108 OR
+             doac_code = 40721211000001101 OR
+             doac_code = 40728711000001103 OR
+             doac_code = 703907006""",
+        },
+        return_expectations={
+            "category": {
+                "ratios": {
+                    "0": 0.00,
+                    "0208020X0BBAAAA": 0.5,
+                    "0208020AAAAABAB": 0.5,
+                }
+            },
+            "incidence": 0.2,
         },
     ),
     doac_dose_calculated=patients.categorised_as(
@@ -418,7 +456,7 @@ study = StudyDefinition(
     ),
 )
 measures = [
-        Measure(
+    Measure(
         id="doac_by_code_rate",
         numerator="on_doac",
         denominator="population",
@@ -508,7 +546,7 @@ measures = [
         denominator="af_&_crcl",
         group_by=["on_doac"],
     ),
-     Measure(
+    Measure(
         id="dose_evaluation_rate",
         numerator="af_&_crcl",
         denominator="on_doac",
@@ -540,7 +578,7 @@ measures = [
         id="doacs_summary_weight_rate",
         numerator="weight_recorded",
         denominator="on_doac",
-        group_by=["doac_dose_calculated","weight_grouped"],
+        group_by=["doac_dose_calculated", "weight_grouped"],
         small_number_suppression=True,
     ),
     Measure(
