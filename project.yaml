@@ -43,3 +43,12 @@ actions:
     outputs: 
       moderately_sensitive:
         measure_csv: output/filtered/measure_*_rate.csv
+
+  generate_plots:
+    run: python:v2 python analysis/report.py
+    needs: [generate_measures]
+    outputs:
+      moderately_sensitive:
+        plots: output/filtered/*.png
+        tables: output/filtered/*.csv
+  
