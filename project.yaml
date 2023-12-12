@@ -51,4 +51,12 @@ actions:
       moderately_sensitive:
         plots: output/filtered/*.png
         tables: output/filtered/*.csv
+
+  # to be run localy
+  generate_notebook_local:
+    run: jupyter:latest jupyter nbconvert /workspace/analysis/report_local.ipynb --execute --to html --template basic --output-dir=/workspace/released_outputs --ExecutePreprocessor.timeout=86400 --no-input
+    needs: [generate_measures]
+    outputs:
+      moderately_sensitive:
+        notebook: released_outputs/report_local.html
   
