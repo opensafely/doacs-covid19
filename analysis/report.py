@@ -24,7 +24,7 @@ plt.bar(x1_coordinates, y1_coordinates, edgecolor="white", width=25)
 plt.plot(x1_coordinates, y1_coordinates)
 plt.ylabel("No. of people")
 plt.xlabel("Period")
-title = "The number of people prescribed a DOAC; Jan18-Sep23"
+title = "The number of people prescribed a DOAC; Jan18-Mar24"
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=1))
 plt.gca().xaxis.set_major_formatter(dtFmt)
@@ -82,7 +82,7 @@ plt.figure(figsize=(12, 8), dpi=100)
 plt.plot(x1_coordinates, y1_coordinates)
 plt.ylabel("% of total population")
 plt.xlabel("Period")
-title = "% of people prescribed a DOAC out of total population; Jan18-Sep23"
+title = "% of people prescribed a DOAC out of total population; Jan18-Mar24"
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=1))
 plt.gca().xaxis.set_major_formatter(dtFmt)
@@ -145,7 +145,7 @@ for c in pivot_region2.columns:
     plt.plot(pivot_region2[c], label=c)
 plt.ylabel("No. of people")
 plt.xlabel("Period")
-title = "Number of people prescribed a DOAC by Region; Jan18-Sep23"
+title = "Number of people prescribed a DOAC by Region; Jan18-Mar24"
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=1))
 plt.gca().xaxis.set_major_formatter(dtFmt)
@@ -157,7 +157,7 @@ plt.vlines(
     ls="--",
     label="national lockdown",
 )
-plt.xlim(xmin=pd.to_datetime("2018-01-01"), xmax=pd.to_datetime("2023-09-01"))
+plt.xlim(xmin=pd.to_datetime("2018-01-01"), xmax=pd.to_datetime("2024-03-01"))
 plt.ylim(ymin=0, ymax=130000)
 plt.legend()
 plt.grid(linestyle="dashed")
@@ -185,7 +185,7 @@ for c in pivot_region3.columns:
 plt.ylabel("No. of people per 00,000 population")
 plt.xlabel("Period")
 title = (
-    "Number of people per 100,000 population prescribed a DOAC by Region; Jan18-Sep23"
+    "Number of people per 100,000 population prescribed a DOAC by Region; Jan18-Mar24"
 )
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=1))
@@ -198,7 +198,7 @@ plt.vlines(
     ls="--",
     label="national lockdown",
 )
-plt.xlim(xmin=pd.to_datetime("2018-01-01"), xmax=pd.to_datetime("2023-09-01"))
+plt.xlim(xmin=pd.to_datetime("2018-01-01"), xmax=pd.to_datetime("2024-03-01"))
 plt.ylim(ymin=0, ymax=3000)
 plt.legend()
 plt.grid(linestyle="dashed")
@@ -226,7 +226,7 @@ for c in pivot_age2.columns:
     plt.plot(pivot_age2[c], label=c)
 plt.ylabel("No. of people")
 plt.xlabel("Period")
-title = "Number of people prescribed a DOAC by age band; Jan18-Sep23"
+title = "Number of people prescribed a DOAC by age band; Jan18-Mar24"
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=1))
 plt.gca().xaxis.set_major_formatter(dtFmt)
@@ -238,7 +238,7 @@ plt.vlines(
     ls="--",
     label="national lockdown",
 )
-plt.xlim(xmin=pd.to_datetime("2018-01-01"), xmax=pd.to_datetime("2023-09-01"))
+plt.xlim(xmin=pd.to_datetime("2018-01-01"), xmax=pd.to_datetime("2024-03-01"))
 plt.ylim(ymin=0, ymax=250000)
 plt.legend()
 plt.grid(linestyle="dashed")
@@ -267,7 +267,7 @@ for c in pivot_age3.columns:
 plt.ylabel("No. of people per 100,000 population")
 plt.xlabel("Period")
 title = (
-    "Number of people per 100,000 population prescribed a DOAC by age band; Jan18-Sep23"
+    "Number of people per 100,000 population prescribed a DOAC by age band; Jan18-Mar24"
 )
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=1))
@@ -280,7 +280,7 @@ plt.vlines(
     ls="--",
     label="national lockdown",
 )
-plt.xlim(xmin=pd.to_datetime("2018-01-01"), xmax=pd.to_datetime("2023-09-01"))
+plt.xlim(xmin=pd.to_datetime("2018-01-01"), xmax=pd.to_datetime("2024-03-01"))
 plt.ylim(ymin=0, ymax=17000)
 plt.legend()
 plt.grid(linestyle="dashed")
@@ -310,7 +310,7 @@ for c in pivot_sex2.columns:
 
 plt.ylabel("No. of people")
 plt.xlabel("Period")
-title = "Number of people prescribed a DOAC by gender; Jan18-Sep23"
+title = "Number of people prescribed a DOAC by gender; Jan18-Mar24"
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=1))
 plt.gca().xaxis.set_major_formatter(dtFmt)
@@ -325,7 +325,7 @@ plt.vlines(
 plt.ylim(ymin=0, ymax=300000)
 plt.legend()
 plt.grid(linestyle="dashed")
-plt.xlim(xmin=pd.to_datetime("2018-01-01"), xmax=pd.to_datetime("2023-09-01"))
+plt.xlim(xmin=pd.to_datetime("2018-01-01"), xmax=pd.to_datetime("2024-03-01"))
 
 plt.xticks(rotation=90)
 
@@ -399,7 +399,7 @@ for c in pivot_sex3.columns:
 plt.ylabel("No. of people per 100,000 population")
 plt.xlabel("Period")
 title = (
-    "Number of people per 100,000 population prescribed a DOAC by gender; Jan18-Sep23"
+    "Number of people per 100,000 population prescribed a DOAC by gender; Jan18-Mar24"
 )
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=1))
@@ -412,7 +412,7 @@ plt.vlines(
     ls="--",
     label="national lockdown",
 )
-plt.xlim(xmin=pd.to_datetime("2018-01-01"), xmax=pd.to_datetime("2023-09-01"))
+plt.xlim(xmin=pd.to_datetime("2018-01-01"), xmax=pd.to_datetime("2024-03-01"))
 plt.ylim(ymin=0, ymax=2700)
 plt.legend()
 plt.grid(linestyle="dashed")
@@ -498,7 +498,7 @@ plt.plot(x1_coordinates, y1_coordinates, label="F")
 plt.plot(x2_coordinates, y2_coordinates, label="M")
 plt.ylabel("Mean age")
 plt.xlabel("Period")
-title = "Mean age of people prescribed a DOAC by gender; Jan18-Sep23"
+title = "Mean age of people prescribed a DOAC by gender; Jan18-Mar24"
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=1))
 plt.gca().xaxis.set_major_formatter(dtFmt)
@@ -510,7 +510,7 @@ plt.vlines(
     ls="--",
     label="national lockdown",
 )
-plt.xlim(xmin=pd.to_datetime("2018-01-01"), xmax=pd.to_datetime("2023-09-01"))
+plt.xlim(xmin=pd.to_datetime("2018-01-01"), xmax=pd.to_datetime("2024-03-01"))
 plt.ylim(ymin=0, ymax=110)
 plt.grid(linestyle="dashed")
 plt.xticks(rotation=90)
@@ -581,7 +581,7 @@ plt.figure(figsize=(12, 8), dpi=100)
 plt.plot(pivot_carer)
 plt.ylabel("% of all people on a DOAC")
 plt.xlabel("Period")
-title = "% of people prescribed a DOAC indentified as being a carer; Jan18-Sep23"
+title = "% of people prescribed a DOAC indentified as being a carer; Jan18-Mar24"
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=1))
 plt.gca().xaxis.set_major_formatter(dtFmt)
@@ -593,7 +593,7 @@ plt.vlines(
     ls="--",
     label="national lockdown",
 )
-plt.xlim(xmin=pd.to_datetime("2018-01-01"), xmax=pd.to_datetime("2023-09-01"))
+plt.xlim(xmin=pd.to_datetime("2018-01-01"), xmax=pd.to_datetime("2024-03-01"))
 plt.ylim(ymin=0, ymax=9)
 plt.grid(linestyle="dashed")
 plt.xticks(rotation=90)
@@ -642,7 +642,7 @@ weight_df = pd.read_csv(
 )
 weight_df["value"] = 100 * weight_df["value"]
 weight_subset = weight_df.loc[
-    (weight_df["on_doac"] != 0) & (weight_df["date"] >= "2022-10-01"), :
+    (weight_df["on_doac"] != 0) & (weight_df["date"] >= "2023-04-01"), :
 ]
 pivot_weight = weight_subset.pivot(index="date", columns="on_doac", values="value")
 plt.figure(figsize=(12, 8))
@@ -657,7 +657,7 @@ plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=1))
 plt.gca().xaxis.set_major_formatter(dtFmt)
 plt.ylabel("% of all people on a DOAC")
 plt.xlabel("Period")
-title = "% of people prescribed a DOAC with a weight recorded in the last 12 months; Oct22-Sep23"
+title = "% of people prescribed a DOAC with a weight recorded in the last 12 months; Apr23-Mar24"
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.ylim(ymin=0, ymax=100)
 plt.gca()
@@ -691,7 +691,7 @@ egfr_df = pd.read_csv(
 )
 egfr_df["value"] = 100 * egfr_df["value"]
 egfr_subset = egfr_df.loc[
-    (egfr_df["on_doac"] != 0) & (egfr_df["date"] >= "2022-10-01"), :
+    (egfr_df["on_doac"] != 0) & (egfr_df["date"] >= "2023-04-01"), :
 ]
 pivot_egfr = egfr_subset.pivot(index="date", columns="on_doac", values="value")
 plt.figure(figsize=(12, 8))
@@ -706,7 +706,7 @@ plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=1))
 plt.gca().xaxis.set_major_formatter(dtFmt)
 plt.ylabel("% of all people on a DOAC")
 plt.xlabel("Period")
-title = "% of people prescribed a DOAC with a eGFR recorded in the last 12 months; Oct22-Sep23"
+title = "% of people prescribed a DOAC with a eGFR recorded in the last 12 months; Apr23-Mar24"
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.ylim(ymin=0, ymax=100)
 
@@ -739,7 +739,7 @@ sc_df = pd.read_csv(
     parse_dates=["date"],
 )
 sc_df["value"] = 100 * sc_df["value"]
-sc_subset = sc_df.loc[(sc_df["on_doac"] != 0) & (sc_df["date"] >= "2022-10-01"), :]
+sc_subset = sc_df.loc[(sc_df["on_doac"] != 0) & (sc_df["date"] >= "2023-04-01"), :]
 pivot_sc = sc_subset.pivot(index="date", columns="on_doac", values="value")
 plt.figure(figsize=(12, 8))
 plt.bar(
@@ -749,7 +749,7 @@ plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=1))
 plt.gca().xaxis.set_major_formatter(dtFmt)
 plt.ylabel("% of all people on a DOAC")
 plt.xlabel("Period")
-title = "% of people prescribed a DOAC with a serum creatinine level recorded in the last 12 months; Oct22-Sep23"
+title = "% of people prescribed a DOAC with a serum creatinine level recorded in the last 12 months; Apr23-Mar24"
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.ylim(ymin=0, ymax=100)
 plt.gca()
@@ -782,7 +782,7 @@ crcl_df = pd.read_csv(
 )
 crcl_df["value"] = 100 * crcl_df["value"]
 crcl_subset = crcl_df.loc[
-    (crcl_df["on_doac"] != 0) & (crcl_df["date"] >= "2022-10-01"), :
+    (crcl_df["on_doac"] != 0) & (crcl_df["date"] >= "2023-04-01"), :
 ]
 pivot_crcl = crcl_subset.pivot(index="date", columns="on_doac", values="value")
 plt.figure(figsize=(12, 8))
@@ -798,7 +798,7 @@ plt.gca().xaxis.set_major_formatter(dtFmt)
 
 plt.ylabel("% of all people on a DOAC")
 plt.xlabel("Period")
-title = "% of people prescribed a DOAC with a Cr/Cl recorded in the last 12 months; Oct22-Sep23"
+title = "% of people prescribed a DOAC with a Cr/Cl recorded in the last 12 months; Apr23-Mar24"
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.ylim(ymin=0, ymax=100)
 plt.gca()
@@ -831,7 +831,7 @@ crcl2_df = pd.read_csv(
 )
 crcl2_df["value"] = 100 - (100 * crcl2_df["value"])
 crcl2_subset = crcl2_df.loc[
-    (crcl2_df["on_doac"] != 0) & (crcl2_df["date"] >= "2022-10-01"), :
+    (crcl2_df["on_doac"] != 0) & (crcl2_df["date"] >= "2023-04-01"), :
 ]
 pivot_crcl2 = crcl2_subset.pivot(index="date", columns="on_doac", values="value")
 plt.figure(figsize=(12, 8))
@@ -847,7 +847,7 @@ plt.gca().xaxis.set_major_formatter(dtFmt)
 
 plt.ylabel("% of all people on a DOAC")
 plt.xlabel("Period")
-title = "% of people prescribed a DOAC with a serum creatinine level recorded in the last 12 months but no Cr/Cl ; Oct22-Sep23"
+title = "% of people prescribed a DOAC with a serum creatinine level recorded in the last 12 months but no Cr/Cl ; Apr23-Mar24"
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.ylim(ymin=0, ymax=100)
 plt.gca()
@@ -880,7 +880,7 @@ af_df = pd.read_csv(
     parse_dates=["date"],
 )
 af_df["value"] = 100 * af_df["value"]
-af_subset = af_df.loc[(af_df["on_doac"] != 0) & (af_df["date"] >= "2022-10-01"), :]
+af_subset = af_df.loc[(af_df["on_doac"] != 0) & (af_df["date"] >= "2023-04-01"), :]
 pivot_af = af_subset.pivot(index="date", columns="on_doac", values="value")
 plt.figure(figsize=(12, 8))
 plt.bar(
@@ -891,7 +891,7 @@ plt.gca().xaxis.set_major_formatter(dtFmt)
 
 plt.ylabel("% of all people on a DOAC with Atrial Fibrillation")
 plt.xlabel("Period")
-title = "% of people prescribed a DOAC with Atrial Fibrillation in the last 12 months; Oct22-Sep23"
+title = "% of people prescribed a DOAC with Atrial Fibrillation in the last 12 months; Apr23-Mar24"
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.ylim(ymin=0, ymax=100)
 plt.gca()
@@ -924,7 +924,7 @@ af_crcl = pd.read_csv(
 )
 af_crcl["value"] = 100 * af_crcl["value"]
 afcrcl_subset = af_crcl.loc[
-    (af_crcl["on_doac"] != 0) & (af_crcl["date"] >= "2022-10-01"), :
+    (af_crcl["on_doac"] != 0) & (af_crcl["date"] >= "2023-04-01"), :
 ]
 pivot_afcrcl = afcrcl_subset.pivot(index="date", columns="on_doac", values="value")
 plt.figure(figsize=(12, 8))
@@ -940,7 +940,7 @@ plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=1))
 plt.gca().xaxis.set_major_formatter(dtFmt)
 plt.ylabel("% of all people on a DOAC with Atrial Fibrillation")
 plt.xlabel("Period")
-title = "% of people prescribed a DOAC with Atrial Fibrillation and Cr/Cl recorded in the last 12 months; Oct22-Sep23"
+title = "% of people prescribed a DOAC with Atrial Fibrillation and Cr/Cl recorded in the last 12 months; Apr23-Mar24"
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.ylim(ymin=0, ymax=100)
 plt.gca()
@@ -972,7 +972,7 @@ af_evaluate = pd.read_csv(
     parse_dates=["date"],
 )
 evaluate_subset = af_evaluate.loc[
-    (af_evaluate["dose_summary"] != "0") & (af_evaluate["date"] >= "2022-10-01"), :
+    (af_evaluate["dose_summary"] != "0") & (af_evaluate["date"] >= "2023-04-01"), :
 ]
 pivot_evaluate = evaluate_subset.pivot_table(
     index="date",
@@ -998,7 +998,7 @@ plt.ylabel("% of all people on a DOAC with Atrial Fibrillation & Cr/Cl recorded"
 plt.xlabel("Period")
 plt.xticks(rotation=0)
 plt.margins(x=0)
-title = "% of people prescribed a DOAC with Atrial Fibrillation and with Cr/Cl recorded in the last 12 months, where the recommended dose (calculated using recorded Cr/Cl) does not match the prescribed dose in the last 12 months; Oct22-Sep23"
+title = "% of people prescribed a DOAC with Atrial Fibrillation and with Cr/Cl recorded in the last 12 months, where the recommended dose (calculated using recorded Cr/Cl) does not match the prescribed dose in the last 12 months; Apr23-Mar24"
 plt.title("\n".join(wrap(title, 40)), fontsize=12)
 plt.ylim(ymin=0, ymax=100)
 
