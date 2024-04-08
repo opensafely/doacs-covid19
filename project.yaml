@@ -44,9 +44,16 @@ actions:
       moderately_sensitive:
         measure_csv: output/filtered/measure_*_rate.csv
 
+  round_measures:
+    run: python:latest python analysis/round_measures.py
+    needs: [generate_measures]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/filtered/measure_*rate.csv
+
   generate_plots:
     run: python:v2 python analysis/report.py
-    needs: [generate_measures]
+    needs: [round_measures]
     outputs:
       moderately_sensitive:
         plots: output/filtered/*.png
@@ -55,7 +62,7 @@ actions:
   # to be run localy
   generate_notebook_local:
     run: jupyter:latest jupyter nbconvert /workspace/analysis/report_local.ipynb --execute --to html --template basic --output-dir=/workspace/released_outputs --ExecutePreprocessor.timeout=86400 --no-input
-    needs: [generate_measures]
+    needs: [round_measures]
     outputs:
       moderately_sensitive:
         notebook: released_outputs/report_local.html
